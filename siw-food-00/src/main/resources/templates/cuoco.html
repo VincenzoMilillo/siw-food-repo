@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cuoco</title>
+    <link rel="stylesheet" href="/stile.css?version=2" />
+  </head>
+  <body>
+    <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a></div>
+    <div th:if="${cuoco}">
+      <h1 th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">Info cuoco</h1>
+      <span><img width="30%" th:src="${cuoco.immagine}" /></span>
+    </div>
+  </body>
+</html>

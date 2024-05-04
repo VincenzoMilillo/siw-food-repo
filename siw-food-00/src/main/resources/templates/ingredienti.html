@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Ingredienti</title>
+    <link rel="stylesheet" href="/stile.css?version=2" />
+  </head>
+
+  <body>
+    <div><a href="/"><img src="/images/siw-food-logo.png" width="50%"/></a></div>
+    <h1>Ingredienti con stagionalità</h1>
+    <div th:if="${ingredienti.isEmpty()}">Non ci sono ingredienti nel sistema</div>
+    <ul>
+      <li th:each="ingrediente : ${ingredienti}">
+        <a th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}"
+           th:text="${ingrediente.nome} + ' (' + ${ingrediente.stagionalita} + ')'"></a>
+      </li>
+    </ul>
+  </body>
+
+</html>

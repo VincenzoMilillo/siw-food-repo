@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ingrediente</title>
+    <link rel="stylesheet" href="/stile.css?version=2" />
+  </head>
+  <body>
+    <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a></div>
+    <div th:if="${ingrediente}">
+      <h1 th:text="${ingrediente.nome} + ' (' + ${ingrediente.stagionalita} + ')'">patata (inverno)</h1>
+      <h3 th:text="${ingrediente.descrizione}">Info ingrediente</h3>
+      <span><img width="30%" th:src="${ingrediente.immagine}" /></span>
+    </div>
+  </body>
+</html>

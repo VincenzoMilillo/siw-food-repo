@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ricetta</title>
+    <link rel="stylesheet" href="/stile.css?version=2" />
+  </head>
+  <body>
+    <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a></div>
+    <div th:if="${ricetta}">
+      <h1 th:text="${ricetta.nome}">Info ricetta</h1>
+      <h3 th:text="${ricetta.descrizione}">Info ricetta</h3>
+      <span><img width="30%" th:src="${ricetta.immagine}" /></span>
+    </div>
+  </body>
+</html>
