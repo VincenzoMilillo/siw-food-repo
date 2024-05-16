@@ -1,7 +1,7 @@
 package it.uniroma3.siw.model;
 
 import java.util.Objects;
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,21 +15,21 @@ public class Ricetta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nome;
-	private String descrizione;
-	private String immagine;
+	private String name;
+	private String description;
+	private String photo;
 	
 	/*ASSOCIAZIONI*/
 	@ManyToOne
 	private Cuoco creatore;
 	@ManyToMany(mappedBy="ricetteContenenti")
-	private Set<Ingrediente> ingredientiContenuti;
+	private List<Ingrediente> ingredientiContenuti;
 	
 	/*GETTER E SETTER*/
-	public Set<Ingrediente> getIngredienti() {
+	public List<Ingrediente> getIngredienti() {
 		return ingredientiContenuti;
 	}
-	public void setIngredienti(Set<Ingrediente> ingredienti) {
+	public void setIngredienti(List<Ingrediente> ingredienti) {
 		this.ingredientiContenuti = ingredienti;
 	}
 	public Cuoco getCreatore() {
@@ -45,27 +45,27 @@ public class Ricetta {
 		this.id = id;
 	}
 	public String getNome() {
-		return nome;
+		return name;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.name = nome;
 	}
 	public String getDescrizione() {
-		return descrizione;
+		return description;
 	}
 	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+		this.description = descrizione;
 	}
 	public String getImmagine() {
-		return immagine;
+		return photo;
 	}
 	public void setImmagine(String immagine) {
-		this.immagine = immagine;
+		this.photo = immagine;
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nome);
+		return Objects.hash(id, name);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -76,6 +76,6 @@ public class Ricetta {
 		if (getClass() != obj.getClass())
 			return false;
 		Ricetta other = (Ricetta) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 }

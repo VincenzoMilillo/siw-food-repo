@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import it.uniroma3.siw.model.Ingrediente;
 import it.uniroma3.siw.repository.IngredienteRepository;
 import it.uniroma3.siw.service.IngredienteService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ public class IngredienteController {
 	
 	@GetMapping("/ingrediente/{id}")
 	public String getIngrediente(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("ingrediente", this.ingredienteService.findById(id));
+		Ingrediente ingrediente = this.ingredienteService.findById(id);
+		model.addAttribute("ingrediente", ingrediente);
 		return "ingrediente.html";
 	}
 	

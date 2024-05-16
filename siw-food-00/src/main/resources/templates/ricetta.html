@@ -8,6 +8,7 @@
     <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a></div>
     <div th:if="${ricetta}">
       <h1 th:text="${ricetta.nome}">Info ricetta</h1>
+      <p>Creatore della ricetta: <span th:text="${ricetta.creatore.nome} + ' ' + ${ricetta.creatore.cognome}"></span><p>
       <h3 th:text="${ricetta.descrizione}">Info ricetta</h3>
       <span><img width="30%" th:src="${ricetta.immagine}" /></span>
     </div>

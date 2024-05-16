@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.model.Ricetta;
 import it.uniroma3.siw.repository.CuocoRepository;
 import it.uniroma3.siw.repository.RicettaRepository;
@@ -20,7 +21,6 @@ public class CuocoController {
 	@Autowired CuocoService cuocoService;
 	@Autowired CuocoRepository cuocoRepository;
 	@Autowired RicettaService ricettaService;
-	@Autowired RicettaRepository ricettaRepository;
 	
 	
 	@GetMapping("/cuochi")
@@ -31,7 +31,8 @@ public class CuocoController {
 	
 	@GetMapping("/cuoco/{id}")
 	public String getCuochi(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("cuoco", this.cuocoService.findById(id));
+		Cuoco cuoco = this.cuocoService.findById(id);
+		model.addAttribute("cuoco", cuoco);
 		return "cuoco.html";
 	}
 	

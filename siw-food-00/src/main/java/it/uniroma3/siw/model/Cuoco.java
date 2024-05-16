@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,14 +15,14 @@ public class Cuoco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nome;
-	private String cognome;
-	private java.time.LocalDate nascita;
-	private String immagine;
+	private String name;
+	private String surname;
+	private LocalDate birthdate;
+	private String photo;
 	
 	/*ASSOCIAZIONI*/
 	@OneToMany(mappedBy = "creatore")
-	private List<Ricetta> ricetteCreate;
+	private List<Ricetta> ricette;
 	
 	/*GETTER E SETTER*/
 	public Long getId() {
@@ -30,34 +31,42 @@ public class Cuoco {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getCognome() {
-		return cognome;
+	public String getSurname() {
+		return surname;
 	}
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
-	public java.time.LocalDate getData_nascita() {
-		return nascita;
+	public LocalDate getBirthdate() {
+		return birthdate;
 	}
-	public void setData_nascita(java.time.LocalDate data_nascita) {
-		this.nascita = data_nascita;
+	public void setBirthdate(LocalDate birthdate) {
+		this.birthdate = birthdate;
 	}
-	public String getImmagine() {
-		return immagine;
+	public String getPhoto() {
+		return photo;
 	}
-	public void setImmagine(String immagine) {
-		this.immagine = immagine;
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	public List<Ricetta> getRicette() {
+		return ricette;
+	}
+	public void setRicette(List<Ricetta> ricette) {
+		this.ricette = ricette;
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(cognome, nascita, nome);
+		return Objects.hash(id, name, surname);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -68,7 +77,7 @@ public class Cuoco {
 		if (getClass() != obj.getClass())
 			return false;
 		Cuoco other = (Cuoco) obj;
-		return Objects.equals(cognome, other.cognome) && Objects.equals(nascita, other.nascita)
-				&& Objects.equals(nome, other.nome);
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(surname, other.surname);
 	}
 }

@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,56 +15,61 @@ public class Ingrediente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nome;
-	private String stagionalita;
-	private String immagine;
-	private String Descrizione;
+	private String name;
+	private String season;
+	private String photo;
+	private String quantity;
+	private String descrizione;
 	
 	/*ASSOCIAZIONI*/
 	@ManyToMany
-	private Set<Ricetta> ricetteContenenti;
+	private List<Ricetta> ricette;
 	
 	/*GETTER E SETTER*/
-	public Set<Ricetta> getRicette() {
-		return ricetteContenenti;
-	}
-	public void setRicette(Set<Ricetta> ricette) {
-		this.ricetteContenenti = ricette;
-	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getStagionalita() {
-		return stagionalita;
-	}
-	public void setStagionalita(String stagionalita) {
-		this.stagionalita = stagionalita;
-	}
 	
-	public String getImmagine() {
-		return immagine;
+	public String getSeason() {
+		return season;
 	}
-	public void setImmagine(String immagine) {
-		this.immagine = immagine;
+	public void setSeason(String season) {
+		this.season = season;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	public String getDescrizione() {
-		return Descrizione;
+		return descrizione;
 	}
 	public void setDescrizione(String descrizione) {
-		Descrizione = descrizione;
+		this.descrizione = descrizione;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, nome);
+	public String getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public List<Ricetta> getRicette() {
+		return ricette;
+	}
+	public void setRicette(List<Ricetta> ricette) {
+		this.ricette = ricette;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -74,6 +80,6 @@ public class Ingrediente {
 		if (getClass() != obj.getClass())
 			return false;
 		Ingrediente other = (Ingrediente) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 }
