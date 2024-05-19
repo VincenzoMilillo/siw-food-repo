@@ -1,10 +1,10 @@
-insert into ricetta (id, name, photo, description) values(nextval('ricetta_seq'), 'Carbonara', 'https://foodwhirl.com/wp-content/uploads/2017/02/spaghetti-carbonara-insta-768x762.jpg', 'pasta con uova');
-insert into ricetta (id, name, photo, description) values(nextval('ricetta_seq'), 'Amatriciana', 'https://www.ntacalabria.it/wp-content/uploads/2015/10/piatto_di_vera_amatriciana-1024x681.jpg', 'pasta con pomodoro');
-insert into ricetta (id, name, photo, description) values(nextval('ricetta_seq'), 'Cacio e Pepe', 'https://i0.wp.com/www.thegrguide.com/wp-content/uploads/2019/11/Cacio-e-Pepe-Dinner.jpg?ssl=1', 'pasta con il formaggio');
-
 insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Bruno', 'Barbieri', '1958-08-25', 'https://www.occhionotizie.it/wp-content/uploads/2019/01/Bruno-Barbieri.jpg');
 insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Antonino', 'Cannavacciuolo', '1990-10-13', 'https://www.salepepe.it/cdn-cgi/image/width=992/files/2014/04/FOXLIFE_CucineDaIncubo_seconda-stagione_Cannavacciuolo-1.jpg');
 insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Vincenzo', 'Milillo', '2002-09-08', 'https://th.bing.com/th/id/OIP.EfNjLZJsFSubH_ESUaqUVQHaHa?rs=1&pid=ImgDetMain');
+
+insert into ricetta (id, name, photo, description, cuoco_id) values(nextval('ricetta_seq'), 'Carbonara', 'https://foodwhirl.com/wp-content/uploads/2017/02/spaghetti-carbonara-insta-768x762.jpg', 'pasta con uova', '1');
+insert into ricetta (id, name, photo, description, cuoco_id) values(nextval('ricetta_seq'), 'Amatriciana', 'https://www.ntacalabria.it/wp-content/uploads/2015/10/piatto_di_vera_amatriciana-1024x681.jpg', 'pasta con pomodoro', '51');
+insert into ricetta (id, name, photo, description, cuoco_id) values(nextval('ricetta_seq'), 'Cacio e Pepe', 'https://i0.wp.com/www.thegrguide.com/wp-content/uploads/2019/11/Cacio-e-Pepe-Dinner.jpg?ssl=1', 'pasta con il formaggio', '101');
 
 insert into ingrediente(id, name, season, photo, description) values(nextval('ingrediente_seq'), 'Patata', 'Tutte le stagioni', 'https://ilfattoalimentare.it/wp-content/uploads/2015/06/potatoes-411975_640.jpg', 'La patata è un tubero');
 INSERT INTO ingrediente(id, name, season, photo, description) VALUES (nextval('ingrediente_seq'), 'Carota', 'Inverno', 'https://th.bing.com/th/id/OIP.KJ0phz5cuVs2gAzrovT2WQHaJ6?rs=1&pid=ImgDetMain', 'La carota è una radice');

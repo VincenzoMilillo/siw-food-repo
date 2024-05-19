@@ -48,6 +48,7 @@ public class RicettaController {
 	public String formNewRicetta(Model model) {
 		Ricetta ricetta = new Ricetta();
 		model.addAttribute("ricetta", ricetta);
+		model.addAttribute("cuochi", this.cuocoService.findAll());
 		return "formNewRicetta.html";
 	}
 	
@@ -63,7 +64,4 @@ public class RicettaController {
 			return "formNewRicetta.html"; 
 		}
 	}
-	
-	
-	
 }

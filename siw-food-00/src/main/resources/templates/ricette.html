@@ -8,8 +8,11 @@
 </head>
 <body>
     <header>
-        <div><a href="/"><img src="/images/siw-food-logo.png" width="50%"/></a></div>
+        <div>
+            <a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+        </div>
         <h1>Ricette</h1>
+        <a href="/formNewRicetta" class="new-recipe-link">Inserisci una nuova Ricetta</a>
     </header>
 
     <main>
@@ -21,13 +24,16 @@
                         <img th:src="@{${ricetta.photo}}" alt="Anteprima Ricetta" />
                     </div>
                     <div class="dettagli">
-                        <h2><a th:href="@{'/ricetta/' + ${ricetta.id}}" th:text="${ricetta.name}"></a></h2>
+                        <h2>
+                            <a th:href="@{'/ricetta/' + ${ricetta.id}}" th:text="${ricetta.name}"></a>
+                        </h2>
+                        <a th:href="@{'/cuoco/' + ${ricetta.cuoco.id}}" th:text="'(' + ${ricetta.cuoco != null ? ricetta.cuoco.surname : 'N/A'} + ')'">(Barbieri)</a>
                         <p class="descrizione" th:text="${ricetta.description}"></p>
                     </div>
                 </div>
             </li>
         </ul>
-        <a href="/formNewRicetta">Inserisci una nuova Ricetta</a>
+        
     </main>
 </body>
 </html>
