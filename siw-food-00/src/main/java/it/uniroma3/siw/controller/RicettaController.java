@@ -32,8 +32,8 @@ public class RicettaController {
 	public String getRicetta(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("ricetta", this.ricettaService.findById(id));
 		Ricetta ricetta = this.ricettaService.findById(id);
-		if(ricetta.getCreatore()!=null) {
-			model.addAttribute("creatore", ricetta.getCreatore());
+		if(ricetta.getCuoco()!=null) {
+			model.addAttribute("creatore", ricetta.getCuoco());
 		}
 		return "ricetta.html";
 	}

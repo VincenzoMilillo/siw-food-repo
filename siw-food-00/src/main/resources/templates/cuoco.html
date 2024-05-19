@@ -7,8 +7,8 @@
   <body>
     <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a></div>
     <div th:if="${cuoco}">
-      <h1 th:text="${cuoco.nome} + ' ' + ${cuoco.cognome}">Info cuoco</h1>
-      <span><img width="30%" th:src="${cuoco.immagine}" /></span>
+      <h1 th:text="${cuoco.name} + ' ' + ${cuoco.surname}">Info cuoco</h1>
+      <span><img width="30%" th:src="${cuoco.photo}" /></span>
     </div>
   </body>
 </html>

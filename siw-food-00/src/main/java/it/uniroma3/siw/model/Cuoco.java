@@ -21,7 +21,7 @@ public class Cuoco {
 	private String photo;
 	
 	/*ASSOCIAZIONI*/
-	@OneToMany(mappedBy = "creatore")
+	@OneToMany(mappedBy = "cuoco")
 	private List<Ricetta> ricette;
 	
 	/*GETTER E SETTER*/

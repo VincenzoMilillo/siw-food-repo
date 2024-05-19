@@ -13,7 +13,7 @@
     <ul>
       <li th:each="ricetta : ${ricette}">
         <a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-           th:text="${ricetta.nome} + ' (' + ${ricetta.descrizione} + ')'"></a>
+           th:text="${ricetta.name} + ' (' + ${ricetta.description} + ')'"></a>
       </li>
     </ul>
   </body>

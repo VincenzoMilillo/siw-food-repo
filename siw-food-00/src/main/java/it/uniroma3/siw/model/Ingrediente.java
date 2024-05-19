@@ -19,7 +19,7 @@ public class Ingrediente {
 	private String season;
 	private String photo;
 	private String quantity;
-	private String descrizione;
+	private String description;
 	
 	/*ASSOCIAZIONI*/
 	@ManyToMany
@@ -45,12 +45,7 @@ public class Ingrediente {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public String getDescrizione() {
-		return descrizione;
-	}
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
+	
 	public String getQuantity() {
 		return quantity;
 	}
@@ -58,6 +53,12 @@ public class Ingrediente {
 		this.quantity = quantity;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getName() {
 		return name;
 	}

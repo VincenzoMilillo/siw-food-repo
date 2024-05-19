@@ -16,53 +16,52 @@ public class Ricetta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	private String description;
 	private String photo;
+	private String description;
 	
 	/*ASSOCIAZIONI*/
 	@ManyToOne
-	private Cuoco creatore;
-	@ManyToMany(mappedBy="ricetteContenenti")
+	private Cuoco cuoco;
+	@ManyToMany(mappedBy="ricette")
 	private List<Ingrediente> ingredientiContenuti;
 	
 	/*GETTER E SETTER*/
-	public List<Ingrediente> getIngredienti() {
-		return ingredientiContenuti;
-	}
-	public void setIngredienti(List<Ingrediente> ingredienti) {
-		this.ingredientiContenuti = ingredienti;
-	}
-	public Cuoco getCreatore() {
-		return creatore;
-	}
-	public void setCreatore(Cuoco creatore) {
-		this.creatore = creatore;
-	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
+	public String getName() {
 		return name;
 	}
-	public void setNome(String nome) {
-		this.name = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getDescrizione() {
-		return description;
-	}
-	public void setDescrizione(String descrizione) {
-		this.description = descrizione;
-	}
-	public String getImmagine() {
+	public String getPhoto() {
 		return photo;
 	}
-	public void setImmagine(String immagine) {
-		this.photo = immagine;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Cuoco getCuoco() {
+		return cuoco;
+	}
+	public void setCuoco(Cuoco cuoco) {
+		this.cuoco = cuoco;
+	}
+	public List<Ingrediente> getIngredientiContenuti() {
+		return ingredientiContenuti;
+	}
+	public void setIngredientiContenuti(List<Ingrediente> ingredientiContenuti) {
+		this.ingredientiContenuti = ingredientiContenuti;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, name);

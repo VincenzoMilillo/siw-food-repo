@@ -7,9 +7,9 @@
   <body>
     <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a></div>
     <div th:if="${ingrediente}">
-      <h1 th:text="${ingrediente.nome} + ' (' + ${ingrediente.stagionalita} + ')'">patata (inverno)</h1>
-      <h3 th:text="${ingrediente.descrizione}">Info ingrediente</h3>
-      <span><img width="30%" th:src="${ingrediente.immagine}" /></span>
+      <h1 th:text="${ingrediente.name} + ' (' + ${ingrediente.season} + ')'">patata (inverno)</h1>
+      <h3 th:text="${ingrediente.description}">Info ingrediente</h3>
+      <span><img width="30%" th:src="${ingrediente.photo}" /></span>
     </div>
   </body>
 </html>
