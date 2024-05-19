@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html>
-
-  <head>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuochi</title>
-    <link rel="stylesheet" href="/stile.css?version=2" />
-  </head>
+    <link rel="stylesheet" href="/css/ricette-stile.css">
+</head>
+<body>
+    <header>
+        <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" alt="SIW Food Logo"/></a></div>
+        <h1>Cuochi</h1>
+    </header>
 
-  <body>
-    <div><a href="/"><img src="/images/siw-food-logo.png" width="50%"/></a></div>
-    <h1>Cuochi</h1>
-    <div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
-    <ul>
-      <li th:each="cuoco : ${cuochi}">
-        <a th:href="@{'/cuoco' + '/' + ${cuoco.id}}"
-           th:text="${cuoco.name} + ' ' + ${cuoco.surname}"></a>
-      </li>
-    </ul>
-  </body>
-
+    <main>
+        <div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
+        <ul class="cuochi-lista">
+            <li th:each="cuoco : ${cuochi}">
+                <div class="cuoco">
+                    <a th:href="@{'/cuoco/' + ${cuoco.id}}">
+                        <h2 th:text="${cuoco.name} + ' ' + ${cuoco.surname}"></h2>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </main>
+</body>
 </html>

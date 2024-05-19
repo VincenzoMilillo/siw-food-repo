@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html>
-
-  <head>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ricette</title>
-    <link rel="stylesheet" href="/stile.css?version=2" />
-  </head>
+    <link rel="stylesheet" href="/css/ricette-stile.css">
+</head>
+<body>
+    <header>
+        <div><a href="/"><img src="/images/siw-food-logo.png" width="50%"/></a></div>
+        <h1>Ricette</h1>
+    </header>
 
-  <body>
-    <div><a href="/"><img src="/images/siw-food-logo.png" width="50%"/></a></div>
-    <h1>Ricette</h1>
-    <div th:if="${ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
-    <ul>
-      <li th:each="ricetta : ${ricette}">
-        <a th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-           th:text="${ricetta.name} + ' (' + ${ricetta.description} + ')'"></a>
-      </li>
-    </ul>
-  </body>
-
+    <main>
+        <div th:if="${ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
+        <ul class="ricette-lista">
+            <li th:each="ricetta : ${ricette}">
+                <div class="ricetta">
+                    <div class="immagine-anteprima">
+                        <img th:src="@{${ricetta.photo}}" alt="Anteprima Ricetta" />
+                    </div>
+                    <div class="dettagli">
+                        <h2><a th:href="@{'/ricetta/' + ${ricetta.id}}" th:text="${ricetta.name}"></a></h2>
+                        <p class="descrizione" th:text="${ricetta.description}"></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <a href="/formNewRicetta">Inserisci una nuova Ricetta</a>
+    </main>
+</body>
 </html>

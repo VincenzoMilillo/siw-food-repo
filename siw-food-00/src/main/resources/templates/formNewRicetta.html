@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuova Ricetta</title>
+<link rel="stylesheet" href="/css/stile.css">
+</head>
+<body>
+	<header>
+		<div>
+			<a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+		</div>
+		<h1>Aggiungi una ricetta</h1>
+	</header>
+	<main>
+		<form th:action="@{/ricetta}" method="POST" th:object="${ricetta}">
+			<div>
+				<span th:text="${messaggioErrore}">Errore</span>
+			</div>
+			<div>
+				Nome: <span><input required type="text"
+					th:field="${ricetta.name}" /></span>
+			</div>
+			<div>
+				Descrizione: <span><input required type="text"
+					th:field="${ricetta.description}" /></span>
+			</div>
+			<div>
+				URL: <span><input type="url" th:field="${ricetta.photo}" /></span>
+			</div>
+			<div>
+				<span><button type="submit">Conferma</button></span>
+			</div>
+		</form>
+	</main>
+</body>
+</html>
