@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Cuoco</title>
-    <link rel="stylesheet" href="/stile.css?version=2" />
-  </head>
-  <body>
-    <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a></div>
-    <div th:if="${cuoco}">
-      <h1 th:text="${cuoco.name} + ' ' + ${cuoco.surname}">Info cuoco</h1>
-      <span><img width="30%" th:src="${cuoco.photo}" /></span>
-    </div>
-  </body>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Cuoco</title>
+    <link rel="stylesheet" href="/css/ricette-stile.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+        </div>
+        <h1>Info Cuoco</h1>
+    </header>
+
+    <main>
+        <div class="cuoco-info" th:if="${cuoco}">
+            <h1 class="cuoco-titolo" th:text="${cuoco.name} + ' ' + ${cuoco.surname}">Info cuoco</h1>
+            <div class="cuoco-immagine">
+                <img th:src="${cuoco.photo}" alt="Foto Cuoco" width="30%" />
+            </div>
+        </div>
+    </main>
+</body>
 </html>
