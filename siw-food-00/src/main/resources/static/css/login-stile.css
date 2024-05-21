@@ -1,0 +1,150 @@
+/* stile.css */
+
+/* Global Styles */
+body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f5f5f5;
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+	background-color: #2e7d32;
+	color: white;
+	padding: 10px;
+	height: 20px;
+	text-align: center;
+	padding: 5px; /* Reduce padding */
+	font-size: 20px;
+}
+
+header nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+header nav ul li {
+	display: inline;
+	margin: 0 5px;
+}
+
+header nav ul li a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+header nav ul li a:hover {
+	color: red; /* Change the link color to red on hover */
+}
+
+/* Main Styles */
+main {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+form {
+	background: white;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	max-width: 400px;
+	width: 100%;
+}
+
+h1 {
+	color: #2e7d32;
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	background-color: #2e7d32;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #1b5e20;
+}
+
+.center-image img {
+	width: 15%;
+	display: block;
+	margin: 0 auto 20px;
+}
+
+a {
+	color: #2e7d32;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+	background-color: #2e7d32;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	width: 100%;
+}
+
+footer p {
+	margin: 5px 0;
+}
+
+/* Responsive Styles */
+@media ( max-width : 768px) {
+	form {
+		padding: 20px;
+	}
+	.center-image img {
+		width: 25%;
+	}
+}
+
+@media ( max-width : 480px) {
+	form {
+		padding: 15px;
+	}
+	.center-image img {
+		width: 40%;
+	}
+	button {
+		font-size: 14px;
+	}
+}
