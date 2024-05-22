@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class GlobalController {
 	@ModelAttribute("userDetails")
+	
 	public UserDetails getUser() {
 		UserDetails user = null;
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

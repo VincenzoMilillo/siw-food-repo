@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -22,6 +23,10 @@ public class User {
 	private String surname;
 	@NotBlank
 	private String email;
+	@NotBlank
+	private LocalDate birthday;
+	@NotBlank
+	private String photo;
 
     public Long getId() {
 		return id;
@@ -54,6 +59,22 @@ public class User {
 		this.email = email;
 	}
 
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, id, name, surname);
@@ -71,6 +92,4 @@ public class User {
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
 				&& Objects.equals(surname, other.surname);
 	}
-
-	
 }

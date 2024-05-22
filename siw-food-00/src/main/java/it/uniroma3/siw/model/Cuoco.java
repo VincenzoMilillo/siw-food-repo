@@ -15,10 +15,10 @@ public class Cuoco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String name;
-	private String surname;
-	private LocalDate birthdate;
-	private String photo;
+	public String name;
+	public String surname;
+	public LocalDate birthdate;
+	public String photo;
 	
 	/*ASSOCIAZIONI*/
 	@OneToMany(mappedBy = "cuoco")
