@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione Completata - Siwfood</title>
+    <link rel="stylesheet" href="/css/login-stile.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </nav>
+        <h1>Siwfood</h1>
+    </header>
+
+    <main>
+        <div class="login-box">
+            <h1>Complimenti, ora sei un cuoco registrato</h1>
+            <div>
+                <strong>Nome:</strong> <span th:text="${user.name}"></span>
+            </div>
+            <div>
+                <strong>Cognome:</strong> <span th:text="${user.surname}"></span>
+            </div>
+            <div>
+                <strong>Email:</strong> <span th:text="${user.email}"></span>
+            </div>
+            <div>
+                <strong>Data di nascita:</strong> <span th:text="${user.birthdate}"></span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+        <p>Seguici sui nostri social media!</p>
+        <p>&copy; 2024 Siwfood. Tutti i diritti riservati.</p>
+    </footer>
+
+</body>
+</html>

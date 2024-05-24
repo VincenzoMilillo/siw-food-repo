@@ -38,11 +38,23 @@ public class AuthenticationController {
 		return "formLogin.html";
 	}
     
+    @GetMapping (value = "/login/error")
+	public String showLoginErrorForm(Model model) {
+		String messaggioErrore = new String("Username o password incorretti");
+		model.addAttribute("messaggioErrore", messaggioErrore);
+		return "formLogin.html";
+	}
+    
+    @GetMapping(value = "/success")
+    public String defaultAfterLogin(Model model) {
+        return "index.html";
+    }
+    
     @GetMapping(value = "/register") 
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
-		return "formRegister";
+		return "formRegister.html";
 	}
     
     @PostMapping(value = {"/register"} )
@@ -57,11 +69,11 @@ public class AuthenticationController {
             Cuoco nuovoCuoco = new Cuoco();
             nuovoCuoco.name = user.getName();
             nuovoCuoco.surname = user.getSurname();
-            nuovoCuoco.birthdate = user.getBirthday();
+            nuovoCuoco.birthdate = user.getBirthdate();
             nuovoCuoco.photo = user.getPhoto();
             this.cuocoService.save(nuovoCuoco);
-            return "registrationSuccessful";
+            return "registrationSuccessful.html";
         }
-        return "registerUser";
+        return "formRegister.html";
     }
 }

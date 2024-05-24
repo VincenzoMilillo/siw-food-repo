@@ -23,8 +23,7 @@ public class User {
 	private String surname;
 	@NotBlank
 	private String email;
-	@NotBlank
-	private LocalDate birthday;
+	private LocalDate birthdate;
 	@NotBlank
 	private String photo;
 
@@ -59,12 +58,12 @@ public class User {
 		this.email = email;
 	}
 
-	public LocalDate getBirthday() {
-		return birthday;
+	public LocalDate getBirthdate() {
+		return birthdate;
 	}
 
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
+	public void setBirthdate(LocalDate birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public String getPhoto() {

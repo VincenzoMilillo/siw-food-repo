@@ -14,15 +14,14 @@
                 <li><a href="/">Home</a></li>
             </ul>
         </nav>
-        <h1>Siwfood</h1>
     </header>
 
     <main>
-        <div class="register-box">
+        <div class="login-box">
+            <div>
+                <h1>Inserisci le credenziali per registrarti</h1>
+            </div>
             <form th:action="@{/register}" method="POST">
-                <div>
-                    <h1>Inserisci le credenziali per registrarti</h1>
-                </div>
                 <div class="input">
                     <input type="text" placeholder="Username" required th:field="${credentials.username}" />
                     <span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}"
@@ -46,7 +45,12 @@
                     <input type="text" placeholder="Email" required th:field="${user.email}" />
                     <span th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" th:style="'color:red'"></span>
                 </div>
+                <div class="input">
+                    <input type="date" placeholder="Data di Nascita" required th:field="${user.birthdate}" />
+                    <span th:if="${#fields.hasErrors('user.birthdate')}" th:errors="${user.birthdate}" th:style="'color:red'"></span>
+                </div>
                 <div>
+                <br>
                     <button type="submit">Registrati</button>
                 </div>
             </form>
