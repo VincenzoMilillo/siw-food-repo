@@ -25,7 +25,7 @@ public class User {
 	private String email;
 	private LocalDate birthdate;
 	@NotBlank
-	private String photo;
+	public String photo;
 
     public Long getId() {
 		return id;

@@ -33,6 +33,26 @@ public class UserService {
     }
 
     /**
+     * This method retrieves a User from the DB based on its name.
+     * @param name the name of the User to retrieve from the DB
+     * @return the retrieved User, or null if no User with the passed name could be found in the DB
+     */
+    @Transactional
+    public User getUserByNome(String nome) {
+        return this.userRepository.findByName(nome);
+    }
+    
+    /**
+     * This method retrieves a User from the DB based on its surname.
+     * @param surname the surname of the User to retrieve from the DB
+     * @return the retrieved User, or null if no User with the passed name could be found in the DB
+     */
+    @Transactional
+    public User getUserByCognome(String cognome) {
+        return this.userRepository.findBySurname(cognome);
+    }
+
+    /**
      * This method saves a User in the DB.
      * @param user the User to save into the DB
      * @return the saved User
@@ -56,4 +76,5 @@ public class UserService {
             result.add(user);
         return result;
     }
+
 }

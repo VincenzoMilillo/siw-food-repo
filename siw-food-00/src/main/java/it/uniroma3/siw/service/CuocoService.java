@@ -21,5 +21,13 @@ public class CuocoService {
 	public Cuoco save(Cuoco artist) {
 		return cuocoRepository.save(artist);
 	}
+	
+	public Object findByName(String nome) {
+		return cuocoRepository.findByName(nome);
+	}
+	
+	public Object findByNameAndSurname(String nome, String cognome) {
+		return cuocoRepository.findByNameAndSurname(nome, cognome);
+	}
 
 }

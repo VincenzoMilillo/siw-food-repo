@@ -40,7 +40,7 @@ public class AuthenticationController {
     
     @GetMapping (value = "/login/error")
 	public String showLoginErrorForm(Model model) {
-		String messaggioErrore = new String("Username o password incorretti");
+		String messaggioErrore = new String("Username o password errati");
 		model.addAttribute("messaggioErrore", messaggioErrore);
 		return "formLogin.html";
 	}
