@@ -1,6 +1,6 @@
-insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Bruno', 'Barbieri', '1958-08-25', 'https://www.occhionotizie.it/wp-content/uploads/2019/01/Bruno-Barbieri.jpg');
+insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Bruno', 'Barbieri', '1958-08-25', 'barbieri.png');
 insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Antonino', 'Cannavacciuolo', '1990-10-13', 'https://www.salepepe.it/cdn-cgi/image/width=992/files/2014/04/FOXLIFE_CucineDaIncubo_seconda-stagione_Cannavacciuolo-1.jpg');
-insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Vincenzo', 'Milillo', '2002-09-08', 'https://th.bing.com/th/id/OIP.EfNjLZJsFSubH_ESUaqUVQHaHa?rs=1&pid=ImgDetMain');
+insert into cuoco (id, name, surname, birthdate, photo) values(nextval('cuoco_seq'), 'Ernst', 'Knam', '1963-03-08', 'https://www.sposimagazine.it/wp-content/uploads/2018/01/Schermata-2018-01-09-alle-16.09.51.png');
 
 insert into ricetta (id, name, photo, description, cuoco_id) values(nextval('ricetta_seq'), 'Carbonara', 'https://foodwhirl.com/wp-content/uploads/2017/02/spaghetti-carbonara-insta-768x762.jpg', 'pasta con uova', '1');
 insert into ricetta (id, name, photo, description, cuoco_id) values(nextval('ricetta_seq'), 'Amatriciana', 'https://www.ntacalabria.it/wp-content/uploads/2015/10/piatto_di_vera_amatriciana-1024x681.jpg', 'pasta con pomodoro', '51');
