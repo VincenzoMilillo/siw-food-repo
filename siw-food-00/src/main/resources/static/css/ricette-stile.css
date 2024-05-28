@@ -16,50 +16,6 @@ header h1 {
 /* Stili per il contenuto principale */
 main {
     padding: 20px;
+    font-size: 24px;
 }
 
-.ricette-lista {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.ricetta {
-    border-bottom: 1px solid #ccc;
-    padding: 15px;
-    flex: 0 0 calc(33.33% - 30px); /* Mostra 3 ricette per riga */
-    margin: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 300px; /* Altezza fissa per le ricette */
-}
-
-.immagine-anteprima img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.dettagli {
-    text-align: center;
-}
-
-.dettagli h2 {
-    font-size: 20px;
-    margin-bottom: 5px;
-}
-
-.descrizione {
-    color: #666;
-    font-style: italic;
-}
-
-/* Stili per il link "Inserisci una nuova Ricetta" */
-a[href="/formNewRicetta"] {
-    display: block;
-    margin-top: 20px;
-    text-align: center;
-    font-size: 18px;
-}
