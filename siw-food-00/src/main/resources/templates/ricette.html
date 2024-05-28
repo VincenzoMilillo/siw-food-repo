@@ -9,10 +9,9 @@
 <body>
     <header>
         <div>
-            <a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+            <a href="/"><img src="/images/siw-food-logo.png" width="50%" alt="SIW Food Logo"/></a>
         </div>
         <h1>Ricette</h1>
-        <a href="/formNewRicetta" class="new-recipe-link">Inserisci una nuova Ricetta</a>
     </header>
 
     <main>
@@ -20,20 +19,15 @@
         <ul class="ricette-lista">
             <li th:each="ricetta : ${ricette}">
                 <div class="ricetta">
-                    <div class="immagine-anteprima">
-                        <img th:src="@{${ricetta.photo}}" alt="Anteprima Ricetta" />
-                    </div>
-                    <div class="dettagli">
-                        <h2>
-                            <a th:href="@{'/ricetta/' + ${ricetta.id}}" th:text="${ricetta.name}"></a>
-                        </h2>
-                        <a th:href="@{'/cuoco/' + ${ricetta.cuoco.id}}" th:text="'(' + ${ricetta.cuoco != null ? ricetta.cuoco.surname : 'N/A'} + ')'">(Barbieri)</a>
-                        <p class="descrizione" th:text="${ricetta.description}"></p>
+                    <a th:href="@{'/ricetta/' + ${ricetta.id}}">
+                        <h2 th:text="${ricetta.name}"></h2>
+                    </a>
+                    <div class="cuoco">
+                        <a th:href="@{'/cuoco/' + ${ricetta.cuoco.id}}" th:text="'(' + ${ricetta.cuoco != null ? ricetta.cuoco.surname : 'N/A'} + ')'"></a>
                     </div>
                 </div>
             </li>
         </ul>
-        
     </main>
 </body>
 </html>

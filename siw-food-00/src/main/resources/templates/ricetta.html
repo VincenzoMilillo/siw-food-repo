@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricette</title>
-    <link rel="stylesheet" href="/css/ricette-stile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ricette</title>
+<link rel="stylesheet" href="/css/ricette-stile.css">
 </head>
 <body>
-    <header>
-        <div>
-            <a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
-        </div>
-        <h1>Info Ricetta</h1>
-    </header>
+	<header>
+		<div>
+			<a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+		</div>
+		<h1>Info Ricetta</h1>
+	</header>
 
-    <main>
-        <div class="ricetta-info" th:if="${ricetta}">
-            <h1 class="ricetta-titolo" th:text="${ricetta.name}">Info ricetta</h1>
-            <h3 class="ricetta-descrizione" th:text="${ricetta.description}">Info ricetta</h3>
-            <div class="ricetta-immagine">
-                <img th:src="${ricetta.photo}" alt="Foto Ricetta" width="30%" />
-            </div>
-        </div>
-    </main>
+	<main>
+		<div class="ricetta-info" th:if="${ricetta}">
+			<h1 class="ricetta-titolo" th:text="${ricetta.name}">Info ricetta</h1>
+			<h3 class="ricetta-descrizione" th:text="${ricetta.description}">Info ricetta</h3>
+			<div class="block-content">
+				<img th:if="${ricetta.photo.startsWith('https')}"
+					th:src="${ricetta.photo}" style="width: 30%; height: auto;">
+				<img th:unless="${ricetta.photo.startsWith('https')}"
+					th:src="@{/images/__${ricetta.photo}__}"
+					style="width: 30%; height: auto;">
+			</div>
+		</div>
+	</main>
 </body>
 </html>

@@ -18,7 +18,7 @@
             <li th:each="cuoco : ${cuochi}">
                 <div class="cuoco">
                     <a th:href="@{'/cuoco/' + ${cuoco.id}}">
-                        <h2 th:text="${cuoco.name} + ' ' + ${cuoco.surname}"></h2>
+                        <h2 th:text="${cuoco.name + ' ' + cuoco.surname}"></h2>
                     </a>
                 </div>
             </li>

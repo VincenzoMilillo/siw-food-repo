@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Ingrediente</title>
-    <link rel="stylesheet" href="/css/ricette-stile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info Ingrediente</title>
+<link rel="stylesheet" href="/css/ricette-stile.css">
 </head>
 <body>
-    <header>
-        <div>
-            <a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
-        </div>
-        <h1>Info Ingrediente</h1>
-    </header>
+	<header>
+		<div>
+			<a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+		</div>
+		<h1>Info Ingrediente</h1>
+	</header>
 
-    <main>
-        <div class="ingrediente-info" th:if="${ingrediente}">
-            <h1 class="ingrediente-titolo" th:text="${ingrediente.name} + ' (' + ${ingrediente.season} + ')'">patata (inverno)</h1>
-            <h3 class="ingrediente-descrizione" th:text="${ingrediente.description}">Info ingrediente</h3>
-            <div class="ingrediente-immagine">
-                <img th:src="${ingrediente.photo}" alt="Foto Ingrediente" width="30%"/>
-            </div>
-        </div>
-    </main>
+	<main>
+		<div class="ingrediente-info" th:if="${ingrediente}">
+			<h1 class="ingrediente-titolo"
+				th:text="${ingrediente.name} + ' (' + ${ingrediente.season} + ')'">patata
+				(inverno)</h1>
+			<h3 class="ingrediente-descrizione"
+				th:text="${ingrediente.description}">Info ingrediente</h3>
+			<div class="block-content">
+				<img th:if="${ingrediente.photo.startsWith('https')}"
+					th:src="${ingrediente.urlImage}" style="width: 30%; height: auto;">
+				<img th:unless="${ingrediente.photo.startsWith('https')}"
+					th:src="@{/images/__${ingrediente.photo}__}"
+					style="width: 30%; height: auto;">
+			</div>
+		</div>
+	</main>
 </body>
 </html>

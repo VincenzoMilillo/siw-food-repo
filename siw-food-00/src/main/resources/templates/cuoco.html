@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Cuoco</title>
-    <link rel="stylesheet" href="/css/ricette-stile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info Cuoco</title>
+<link rel="stylesheet" href="/css/ricette-stile.css">
 </head>
 <body>
-    <header>
-        <div>
-            <a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
-        </div>
-        <h1>Info Cuoco</h1>
-    </header>
+	<header>
+		<div>
+			<a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+		</div>
+		<h1>Info Cuoco</h1>
+	</header>
 
-    <main>
-        <div class="cuoco-info" th:if="${cuoco}">
-            <h1 class="cuoco-titolo" th:text="${cuoco.name} + ' ' + ${cuoco.surname}">Info cuoco</h1>
-            <div class="cuoco-immagine">
-                <img th:src="${cuoco.photo}" alt="Foto Cuoco" width="30%" />
-            </div>
-        </div>
-    </main>
+	<main>
+		<div class="cuoco-info" th:if="${cuoco}">
+			<h1 class="cuoco-titolo"
+				th:text="${cuoco.name} + ' ' + ${cuoco.surname}">Info cuoco</h1>
+			<div class="cuoco-immagine">
+				<img th:if="${cuoco.photo.startsWith('https')}"
+					th:src="${cuoco.photo}" style="width: 30%; height: auto;"> <img
+					th:unless="${cuoco.photo.startsWith('https')}"
+					th:src="@{/images/__${cuoco.photo}__}"
+					style="width: 30%; height: auto;">
+			</div>
+		</div>
+	</main>
 </body>
 </html>
