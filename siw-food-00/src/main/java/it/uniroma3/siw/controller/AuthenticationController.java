@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -57,13 +59,32 @@ public class AuthenticationController {
 		return "formRegister.html";
 	}
     
+    @GetMapping(value = "/") 
+	public String index(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+	        return "index.html";
+		}
+		else {		
+			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				return "admin/indexAdmin.html";
+			}
+			if (credentials.getRole().equals(Credentials.CUOCO_ROLE)) {
+				return "cuoco/indexCuoco.html";
+			}
+		}
+        return "index.html";
+	}
+    
     @PostMapping(value = {"/register"} )
     public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult userBindingResult, 
     						   @Valid @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult, Model model) {
     	
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
-            userService.saveUser(user);
-            credentials.setUser(user);
+        	userService.saveUser(user);
+        	credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
             model.addAttribute("user", user);
             Cuoco nuovoCuoco = new Cuoco();

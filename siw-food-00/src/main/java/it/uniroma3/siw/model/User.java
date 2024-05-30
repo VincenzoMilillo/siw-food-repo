@@ -16,15 +16,10 @@ public class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-	@NotBlank
 	private String name;
-	@NotBlank
 	private String surname;
-	@NotBlank
 	private String email;
 	private LocalDate birthdate;
-	@NotBlank
 	public String photo;
 
     public Long getId() {
