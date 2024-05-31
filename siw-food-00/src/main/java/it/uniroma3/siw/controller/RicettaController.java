@@ -62,7 +62,7 @@ public class RicettaController {
 		model.addAttribute("cuoco", currentCuoco);
 		model.addAttribute("cuocoId", currentCuoco.getId());
 		model.addAttribute("ricetta", ricetta);
-		model.addAttribute("userDetails", tempUser); // Aggiungi userDetails al modello
+		model.addAttribute("userDetails", tempUser);
 		return "cuoco/formNewRicetta.html";
 	}
 	
@@ -88,5 +88,11 @@ public class RicettaController {
 		} else {
 			return "cuoco/formNewRicetta.html";
 		}
+	}
+	
+	@GetMapping("/cuoco/manageRicette")
+	public String ShowRicettaCuoco(Model model) {
+		model.addAttribute("ricette", this.ricettaService.findAll());
+		return "/cuoco/manageRicette.html";
 	}
 }

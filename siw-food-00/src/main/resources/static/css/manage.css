@@ -1,0 +1,63 @@
+/* Stili specifici per la pagina delle ricette */
+
+/* Stili per l'header */
+header {
+    background-color: #2e7d32; /* Verde scuro */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header nav ul {
+    list-style-type: none; /* Rimuove l'elenco puntato */
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    display: inline; /* Impedisce il riempimento automatico */
+    margin: 0 10px; /* Aggiunge spazio tra i link */
+}
+
+header nav ul li a {
+    text-decoration: none; /* Rimuove la sottolineatura */
+    color: white; /* Testo bianco */
+}
+
+header nav ul li a:hover {
+    text-decoration: none; /* Rimuove la sottolineatura al passaggio del mouse */
+    color: red; /* Cambia il colore del testo al passaggio del mouse */
+}
+
+/* Stili per il contenuto principale */
+main {
+    padding: 20px;
+    font-size: 24px;
+}
+
+/* Stili per la lista delle ricette */
+.ricette-list {
+    list-style-type: none; /* Rimuove l'elenco puntato */
+    padding: 0;
+}
+
+.ricette-list li {
+    margin-bottom: 10px;
+}
+
+.ricette-list li a {
+    text-decoration: none;
+    color: #2e7d32; /* Verde scuro */
+}
+
+.ricette-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Stili per il footer */
+footer {
+    background-color: #2e7d32; /* Verde scuro */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
