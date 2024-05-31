@@ -22,8 +22,8 @@
 			<h3 class="ingrediente-descrizione"
 				th:text="${ingrediente.description}">Info ingrediente</h3>
 			<div class="block-content">
-				<img th:if="${ingrediente.photo.startsWith('https')}"
-					th:src="${ingrediente.urlImage}" style="width: 30%; height: auto;">
+				<img th:if="${ingrediente.photo.startsWith('http')}"
+					th:src="${ingrediente.photo}" style="width: 30%; height: auto;">
 				<img th:unless="${ingrediente.photo.startsWith('https')}"
 					th:src="@{/images/__${ingrediente.photo}__}"
 					style="width: 30%; height: auto;">

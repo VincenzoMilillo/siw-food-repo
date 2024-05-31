@@ -8,44 +8,31 @@
 </head>
 <body>
 	<header>
-		<div>
-			<a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
-		</div>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+			</ul>
+		</nav>
 		<h1>Aggiungi una ricetta</h1>
 	</header>
 	<main>
-		<form th:action="@{ricetta}" method="POST"
-			th:object="${ricetta}">
-
-			<div>
-				<label>Nome:</label> <span><input required type="text"
-					th:field="${ricetta.name}" /></span>
-			</div>
-
-			<div>
-				<label>Descrizione:</label> <span><input required type="text"
-					th:field="${ricetta.description}" /></span>
-			</div>
-			<div>
-				<label>Foto:</label> <span><input required type="text"
-					th:field="${ricetta.photo}" /></span>
-			</div>
-
-			<div>
-				<label>Codice del cuoco:</label> <span><input
-					required type="number" th:field="${ricetta.cuoco}" /></span>
-			</div>
-			<br></br> <span>Cuochi registrati:</span>
-			<ul>
-				<li th:each="cuoco: ${cuochi}"><a
-					th:text="'Codice ' + ${cuoco.id} + ' --- ' + ${cuoco.name} + ' ' + ${cuoco.surname}">Bruno
-						Barbieri</a></li>
-			</ul>
-
-			<div>
-				<span><button type="submit">Conferma</button></span>
-			</div>
+		<form th:action="@{/cuoco/ricetta}" method="POST" th:object="${ricetta}">
+				<h1>Inserisci Ricetta</h1>
+				<input required type="text" placeholder="Nome" th:field="${ricetta.name}">
+				<input required type="text" placeholder="Descrizione" th:field="${ricetta.description}">
+				<input required type="text" placeholder="Immagine" th:field="${ricetta.photo}">
+				<input type="hidden" name="username" th:value="${userDetails.username}"/>
+				<button>Conferma</button>
 		</form>
 	</main>
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
 </body>
 </html>

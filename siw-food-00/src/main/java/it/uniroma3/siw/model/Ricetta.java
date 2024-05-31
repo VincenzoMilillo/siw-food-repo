@@ -1,8 +1,7 @@
 package it.uniroma3.siw.model;
 
 import java.util.Objects;
-import java.util.List;
-
+import java.util.Set;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 public class Ricetta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private String name;
 	private String photo;
 	private String description;
@@ -23,13 +22,13 @@ public class Ricetta {
 	@ManyToOne
 	private Cuoco cuoco;
 	@ManyToMany(mappedBy="ricette")
-	private List<Ingrediente> ingredientiContenuti;
+	private Set<Ingrediente> ingredientiContenuti;
 	
 	/*GETTER E SETTER*/
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -56,10 +55,10 @@ public class Ricetta {
 	public void setCuoco(Cuoco cuoco) {
 		this.cuoco = cuoco;
 	}
-	public List<Ingrediente> getIngredientiContenuti() {
+	public Set<Ingrediente> getIngredientiContenuti() {
 		return ingredientiContenuti;
 	}
-	public void setIngredientiContenuti(List<Ingrediente> ingredientiContenuti) {
+	public void setIngredientiContenuti(Set<Ingrediente> ingredientiContenuti) {
 		this.ingredientiContenuti = ingredientiContenuti;
 	}
 	@Override

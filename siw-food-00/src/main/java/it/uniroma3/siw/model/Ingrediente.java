@@ -17,7 +17,7 @@ public class Ingrediente {
 	private Long id;
 	private String name;
 	private String season;
-	private String photo;
+	public String photo;
 	private String quantity;
 	private String description;
 	

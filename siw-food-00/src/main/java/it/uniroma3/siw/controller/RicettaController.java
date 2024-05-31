@@ -7,7 +7,12 @@ import org.springframework.validation.BindingResult;
 
 import it.uniroma3.siw.controller.validator.RicettaValidator;
 import it.uniroma3.siw.model.Ricetta;
+import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Cuoco;
+import it.uniroma3.siw.repository.CredentialsRepository;
 import it.uniroma3.siw.repository.CuocoRepository;
+import it.uniroma3.siw.repository.IngredienteRepository;
 import it.uniroma3.siw.repository.RicettaRepository;
 import it.uniroma3.siw.service.CuocoService;
 import it.uniroma3.siw.service.RicettaService;
@@ -15,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import jakarta.validation.Valid;
 
 
@@ -27,6 +34,8 @@ public class RicettaController {
 	@Autowired CuocoService cuocoService;
 	@Autowired CuocoRepository cuocoRepository;
 	@Autowired RicettaValidator ricettaValidator;
+	@Autowired IngredienteRepository ingredienteRepository;
+	@Autowired CredentialsRepository credentialsRepository;
 	
 	@GetMapping("/ricette")
 	public String mostraRicette(Model model) {
@@ -44,24 +53,40 @@ public class RicettaController {
 		return "ricetta.html";
 	}
 	
-	@GetMapping("/formNewRicetta")
-	public String formNewRicetta(Model model) {
+	@GetMapping(value = "/cuoco/formNewRicetta/{username}")
+	public String formNewRicettaCuoco(@PathVariable("username") String username, Model model) {
+		Credentials tempUser = credentialsRepository.findByUsername(username);
+		User currentUser = tempUser.getUser();
+		Cuoco currentCuoco = this.cuocoRepository.findByNameAndSurname(currentUser.getName(), currentUser.getSurname());
 		Ricetta ricetta = new Ricetta();
+		model.addAttribute("cuoco", currentCuoco);
+		model.addAttribute("cuocoId", currentCuoco.getId());
 		model.addAttribute("ricetta", ricetta);
-		model.addAttribute("cuochi", this.cuocoService.findAll());
-		return "formNewRicetta.html";
+		model.addAttribute("userDetails", tempUser); // Aggiungi userDetails al modello
+		return "cuoco/formNewRicetta.html";
 	}
 	
-	@PostMapping("ricetta")
-	public String newRicetta(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult, Model model) {
-		
+	@GetMapping(value = "/admin/formNewRicetta")
+	public String formNewRicetta(Model model) {
+		model.addAttribute("ricetta", new Ricetta());
+		return "/admin/formNewRicetta.html";
+	}
+	
+	@PostMapping("/cuoco/ricetta")
+	public String newRicettaCuoco(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult,
+			@RequestParam("username") String username, Model model) {
+		Credentials tempUser = credentialsRepository.findByUsername(username);
+		User currentUser = tempUser.getUser();
+		Cuoco currentCuoco = this.cuocoRepository.findByNameAndSurname(currentUser.getName(), currentUser.getSurname());
+		ricetta.setCuoco(currentCuoco);
+
 		this.ricettaValidator.validate(ricetta, bindingResult);
 		if (!bindingResult.hasErrors()) {
-			this.ricettaRepository.save(ricetta); 
+			this.ricettaRepository.save(ricetta);
 			model.addAttribute("ricetta", ricetta);
 			return "ricetta.html";
 		} else {
-			return "formNewRicetta.html"; 
+			return "cuoco/formNewRicetta.html";
 		}
 	}
 }
