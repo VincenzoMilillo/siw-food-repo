@@ -11,11 +11,15 @@
 		<nav>
 			<ul>
 				<li><a href="#">Home</a></li>
-				<li><a href="/login">Login</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
 			</ul>
 		</nav>
-		<h1>Benvenuto nel progetto siw-food</h1>
+		<h1>Admin, benvenuto nel progetto siw-food</h1>
 	</header>
+
 
 	<main>
 		<section class="intro">
@@ -25,13 +29,9 @@
 				un'oasi digitale per gli amanti del buon cibo e dell'arte culinaria.
 				Esplora un vasto universo di sapori, aromi e colori, dove le
 				tradizioni si intrecciano con la creatività e l'innovazione</h4>
-			<img
-				src="/images/cuoco.png"
-				alt="Immagine green 1"> <img
-				src="/images/piatto.png"
-				alt="Immagine green 2"> <img
-				src="/images/piatto2.png"
-				alt="Immagine green 3">
+			<img src="/images/cuoco.png" alt="Immagine green 1"> <img
+				src="/images/piatto.png" alt="Immagine green 2"> <img
+				src="/images/piatto2.png" alt="Immagine green 3">
 		</section>
 
 		<section class="links">
