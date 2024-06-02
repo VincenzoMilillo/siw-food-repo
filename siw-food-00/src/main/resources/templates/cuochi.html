@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuochi</title>
-    <link rel="stylesheet" href="/css/ricette-stile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista cuochi</title>
+<link rel="stylesheet" href="/css/ricettev2-stile.css">
 </head>
 <body>
-    <header>
-        <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" alt="SIW Food Logo"/></a></div>
-        <h1>Cuochi</h1>
-    </header>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Lista dei nostri cuochi verificati</h1>
+	</header>
 
-    <main>
-        <div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
-        <ul class="cuochi-lista">
-            <li th:each="cuoco : ${cuochi}">
-                <div class="cuoco">
-                    <a th:href="@{'/cuoco/' + ${cuoco.id}}">
-                        <h2 th:text="${cuoco.name + ' ' + cuoco.surname}"></h2>
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </main>
+	<main>
+		<h3>Scegli un cuoco che ti incuriosisce e scopri di più:</h3>
+		<div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
+		<ul class="cuochi-lista">
+			<li th:each="cuoco : ${cuochi}">
+				<div class="cuoco">
+					<a th:href="@{'/cuoco/' + ${cuoco.id}}">
+							<span th:text="${cuoco.name}"></span> 
+							<span th:text="${' ' + cuoco.surname}"></span>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</main>
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
 </body>
 </html>

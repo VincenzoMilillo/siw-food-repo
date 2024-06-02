@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Imposta l'altezza minima della pagina per occupare almeno l'intero viewport */
+}
+
+header {
+    background-color: #2e7d32;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    flex: 1; /* Occupa lo spazio rimanente */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Modifica da 'center' a 'flex-start' */
+    align-items: center; /* Posiziona al centro orizzontalmente */
+}
+
+main h3 {
+    margin-top: 0; /* Rimuovi il margine superiore */
+}
+
+/* Aggiungi questa regola al tuo file CSS */
+main ul {
+    margin-top: 20px; /* Aggiungi il margine sopra l'elenco delle ricette */
+}
+
+
+/* Aggiungi questa regola al tuo file CSS */
+/* Aggiungi queste regole al tuo file CSS */
+main div a {
+    font-size: 20px; /* Imposta la dimensione del testo a 24px */
+    text-decoration: none; /* Rimuovi l'underline dai link */
+    color: #2e7d32; /* Imposta il colore citato */
+}
+
+main div a:hover {
+    text-decoration: underline; /* Aggiungi l'underline quando il link è in hover */
+}
+
+
+footer {
+    background-color: #2e7d32;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Fissa il footer in basso */
+}
+
+/* Aggiungi queste regole al tuo file CSS */
+
+.cuochi-lista {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cuoco {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cuoco h2 {
+    font-size: 24px; /* Dimensione del testo dei nomi dei cuochi */
+    font-weight: normal; /* Rimuovi il grassetto */
+    color: #2e7d32; /* Colore citato */
+}
+
+.cuoco a {
+    text-decoration: none; /* Rimuovi l'underline */
+    color: #2e7d32; /* Colore citato */
+}
+
+.cuoco h2 a:hover {
+    text-decoration: underline; /* Aggiungi l'underline al passaggio del mouse */
+}
+
+.ingrediente a {
+    text-align: center;
+}
+
+.ingredienti-lista {
+    list-style-type: none; /* Rimuove l'elenco puntato */
+    padding: 0; /* Rimuove il padding predefinito dell'elenco */
+}
+
+.ingrediente {
+    text-align: center; /* Centra il testo */
+}
+
+.ingrediente h2 {
+    font-size: 18px; /* Imposta la dimensione del testo degli ingredienti */
+    margin: 0; /* Rimuove il margine predefinito */
+}
+
+

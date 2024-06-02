@@ -26,4 +26,8 @@ public class RicettaService {
 	public Iterable<Ricetta> findByCuoco(Cuoco cuoco) {
 		return ricettaRepository.findByCuoco(cuoco);
 	}
+
+	public void deleteById(Long id) {
+		ricettaRepository.deleteById(id);
+	}
 }

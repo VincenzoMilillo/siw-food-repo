@@ -56,8 +56,9 @@
 			<span th:text="${ricetta.description}"></span>
 		</div>
 		<span th:if="${ricetta.description == null}"> Non disponibile </span>
-		<!-- <a th:href="@{'/cuoco/deleteRicetta/' + ${ricetta.id}}">Elimina</a> -->
-
+		<br>
+		<h3>Attenzione! Premendo il tasto elimina non sarà richiesta un ulteriore conferma.</h3>
+		<a th:href="@{'/cuoco/deleteRicetta/' + ${ricetta.id}}" style="color: red;">Elimina</a>
 	</main>
 
 	<footer>

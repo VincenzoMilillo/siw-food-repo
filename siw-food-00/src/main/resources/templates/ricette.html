@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricette</title>
-    <link rel="stylesheet" href="/css/ricette-stile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista ricette</title>
+<link rel="stylesheet" href="/css/ricettev2-stile.css">
 </head>
 <body>
-    <header>
-        <div>
-            <a href="/"><img src="/images/siw-food-logo.png" width="50%" alt="SIW Food Logo"/></a>
-        </div>
-        <h1>Ricette</h1>
-    </header>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Lista delle ricette</h1>
+	</header>
 
     <main>
+    <h3>Clicca sulla ricetta per scoprire informazioni dettagliate!</h3>
+    <h3>Oppure clicca sul cuoco che l'ha proposta:</h3>
         <div th:if="${ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
         <ul>
             <li th:each="ricetta : ${ricette}">
-                <div>
+               <div>
                     <a th:href="@{'/ricetta/' + ${ricetta.id}}" th:text="${ricetta.name}"></a>
-                    <a th:href="@{'/cuoco/' + ${ricetta.cuoco.id}}" th:text="'(' + ${ricetta.cuoco != null ? ricetta.cuoco.surname : 'N/A'} + ')'"></a>
+                    <span>- </span><a th:href="@{'/cuoco/' + ${ricetta.cuoco.id}}" th:text="${ricetta.cuoco != null ? ricetta.cuoco.surname : 'N/A'}"></a>
                 </div>
             </li>
         </ul>
     </main>
+    <footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
 </body>
 </html>

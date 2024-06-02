@@ -200,4 +200,12 @@ public class RicettaController {
 
 		return "cuoco/addIngredienteToRicetta.html";
 	}
+	
+	@GetMapping(value = "/cuoco/deleteRicetta/{ricettaId}")
+	public String deleteRicettaCuoco(@PathVariable("ricettaId") Long ricettaId, Model model) {
+		Ricetta ricetta = ricettaService.findById(ricettaId);
+		ricetta.setIngredientiContenuti(null);
+		ricettaService.deleteById(ricetta.getId());
+		return "redirect:/cuoco/manageRicette";
+	}
 }

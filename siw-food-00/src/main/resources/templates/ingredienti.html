@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingredienti con stagionalità</title>
-    <link rel="stylesheet" href="/css/ricette-stile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista ingredienti</title>
+<link rel="stylesheet" href="/css/ricettev2-stile.css">
 </head>
 <body>
-    <header>
-        <div><a href="/"><img src="/images/siw-food-logo.png" width="50%" alt="SIW Food Logo"/></a></div>
-        <h1>Ingredienti con stagionalità</h1>
-    </header>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Lista degli ingredienti</h1>
+	</header>
 
-    <main>
-        <div th:if="${ingredienti.isEmpty()}">Non ci sono ingredienti nel sistema</div>
-        <ul class="ingredienti-lista">
-            <li th:each="ingrediente : ${ingredienti}">
-                <div class="ingrediente">
-                    <a th:href="@{'/ingrediente/' + ${ingrediente.id}}">
-                        <h2 th:text="${ingrediente.name} + ' (' + ${ingrediente.season} + ')'"></h2>
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </main>
+	<main>
+		<h3>Ecco una lista di tutti gli ingredienti che i nostri chef
+			verificati usano nelle loro preparazioni,</h3>
+		<h3>se non conosci un ingrediente cliccando scoprirai
+			informazioni su di esso:</h3>
+		<div th:if="${ingredienti.isEmpty()}">Non ci sono ingredienti
+			nel sistema</div>
+		<ul class="ingredienti-lista">
+			<li th:each="ingrediente : ${ingredienti}">
+				<div class="ingrediente">
+					<a th:href="@{'/ingrediente/' + ${ingrediente.id}}"> <span
+						th:text="${ingrediente.name}"></span> - <span
+						th:text="${ingrediente.season}"></span>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</main>
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
 </body>
 </html>
