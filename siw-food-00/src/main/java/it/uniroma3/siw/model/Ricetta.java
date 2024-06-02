@@ -21,7 +21,7 @@ public class Ricetta {
 	/*ASSOCIAZIONI*/
 	@ManyToOne
 	private Cuoco cuoco;
-	@ManyToMany(mappedBy="ricette")
+	@ManyToMany
 	private Set<Ingrediente> ingredientiContenuti;
 	
 	/*GETTER E SETTER*/

@@ -1,14 +1,10 @@
 package it.uniroma3.siw.model;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Ingrediente {
@@ -20,10 +16,6 @@ public class Ingrediente {
 	public String photo;
 	private String quantity;
 	private String description;
-	
-	/*ASSOCIAZIONI*/
-	@ManyToMany
-	private List<Ricetta> ricette;
 	
 	/*GETTER E SETTER*/
 	public Long getId() {
@@ -64,13 +56,6 @@ public class Ingrediente {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public List<Ricetta> getRicette() {
-		return ricette;
-	}
-	public void setRicette(List<Ricetta> ricette) {
-		this.ricette = ricette;
 	}
 	@Override
 	public boolean equals(Object obj) {

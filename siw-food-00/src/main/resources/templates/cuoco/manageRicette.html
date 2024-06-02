@@ -20,11 +20,15 @@
 		<h1>Modifica una ricetta</h1>
 	</header>
 	<main>
+		<div th:if="${messaggioErrore}">
+			<p th:text="${messaggioErrore}">Messaggio Errore</p>
+		</div>
 		<h4>Scegli una ricetta da modificare:</h4>
 		<ul class="ricette-list" th:if="${!ricette.isEmpty()}">
-			<li th:each="ricetta : ${ricette}">
-			<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}" th:text="${ricetta.name}"></a>
-		    <a th:if="${userDetails != null}" th:href="@{'/cuoco/formUpdateRicetta' + '/' + ${ricetta.id} + '/' + ${userDetails.username}}">(Aggiorna)</a>
+			<li th:each="ricetta : ${ricette}"><a
+				th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
+				th:text="${ricetta.name}"></a> <a th:if="${userDetails != null}"
+				th:href="@{'/cuoco/formUpdateRicetta' + '/' + ${ricetta.id} + '/' + ${userDetails.username}}">(Aggiorna)</a>
 			</li>
 		</ul>
 	</main>

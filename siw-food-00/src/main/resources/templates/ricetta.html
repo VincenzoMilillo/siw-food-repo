@@ -7,25 +7,30 @@
 <link rel="stylesheet" href="/css/ricette-stile.css">
 </head>
 <body>
-	<header>
-		<div>
-			<a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
-		</div>
-		<h1>Info Ricetta</h1>
-	</header>
+    <header>
+        <div>
+            <a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
+        </div>
+        <h1>Info Ricetta</h1>
+    </header>
 
-	<main>
-		<div class="ricetta-info" th:if="${ricetta}">
-			<h1 class="ricetta-titolo" th:text="${ricetta.name}">Info ricetta</h1>
-			<h3 class="ricetta-descrizione" th:text="${ricetta.description}">Info ricetta</h3>
-			<div class="block-content">
-				<img th:if="${ricetta.photo.startsWith('https')}"
-					th:src="${ricetta.photo}" style="width: 30%; height: auto;">
-				<img th:unless="${ricetta.photo.startsWith('https')}"
-					th:src="@{/images/__${ricetta.photo}__}"
-					style="width: 30%; height: auto;">
-			</div>
-		</div>
-	</main>
+    <main>
+        <div class="ricetta-info" th:if="${ricetta}">
+            <h1 class="ricetta-titolo" th:text="${ricetta.name}">Info ricetta</h1>
+            <h3 class="ricetta-descrizione" th:text="${ricetta.description}">Info ricetta</h3>
+            <div class="block-content">
+                <img th:if="${ricetta.photo.startsWith('https')}" th:src="${ricetta.photo}" style="width: 30%; height: auto;">
+                <img th:unless="${ricetta.photo.startsWith('https')}" th:src="@{/images/__${ricetta.photo}__}" style="width: 30%; height: auto;">
+            </div>
+            <br>
+            <strong>Lista degli ingredienti:</strong>
+            <ul th:if="${not #lists.isEmpty(ricetta.ingredientiContenuti)}">
+                <li th:each="ingrediente: ${ricetta.ingredientiContenuti}">
+                    <span th:text="${ingrediente.name}"></span>
+                </li>
+            </ul>
+            <p th:if="${#lists.isEmpty(ricetta.ingredientiContenuti)}">Ancora nessun ingrediente presente...</p>
+        </div>
+    </main>
 </body>
 </html>

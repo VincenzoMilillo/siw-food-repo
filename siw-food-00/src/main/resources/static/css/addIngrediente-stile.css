@@ -1,0 +1,80 @@
+/* Stili per l'header */
+header {
+    background-color: #2e7d32;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Stili per il footer */
+footer {
+    background-color: #2e7d32;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Stili per il main */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+main > div {
+    margin-bottom: 20px;
+}
+
+.main > div > .ingredienti-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.main > div > .ingredienti-list > li {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.main > div > .ingredienti-list > li > a {
+    text-decoration: none;
+    color: #2e7d32;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.main > div > .ingredienti-list > li > a.aggiungi-link:before {
+    content: "+ ";
+    color: #2e7d32; /* Colore aggiungi */
+}
+
+.main > div > .ingredienti-list > li > a.rimuovi-link:before {
+    content: "- ";
+    color: #2e7d32; /* Colore rimuovi */
+}
+
+.main > div > .ingredienti-list > li > a:hover {
+    text-decoration: underline;
+}
+
+.main > div > .ingredienti-list > li > a.aggiungi-link:hover,
+.main > div > .ingredienti-list > li > a.rimuovi-link:hover {
+    color: red; /* Colore rosso al passaggio del mouse */
+}

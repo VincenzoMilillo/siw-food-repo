@@ -10,7 +10,6 @@ import it.uniroma3.siw.model.Ricetta;
 public interface RicettaRepository extends CrudRepository<Ricetta, Long> {
 	public boolean existsByName(String nome);
 	public List<Ricetta> findByName(String nome);
-	public List<Ricetta> findByOrderByName();
-	public Iterable<Ricetta> findByCuoco(Cuoco cuoco);
+	public List<Ricetta> findByCuoco(Cuoco cuoco);
 	public boolean existsByNameAndCuoco(String nome, Cuoco cuoco);
 }

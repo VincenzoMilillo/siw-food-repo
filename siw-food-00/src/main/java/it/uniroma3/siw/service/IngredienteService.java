@@ -21,8 +21,8 @@ public class IngredienteService {
 		return ingredienteRepository.findAll();
 	}
 	
-	public Iterable<Ingrediente> findByName(String nome) {
-		return ingredienteRepository.findByName(nome);
+	public Iterable<Ingrediente> findByName(String name) {
+		return ingredienteRepository.findByName(name);
 	}
 	
 	public Ingrediente save(Ingrediente ingrediente) {
