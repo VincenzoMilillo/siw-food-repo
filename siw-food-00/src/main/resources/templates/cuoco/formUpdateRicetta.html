@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aggiorna ricetta</title>
+<link rel="stylesheet" href="/css/stile.css">
+</head>
+<body>
+
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Aggiorna ricetta</h1>
+	</header>
+
+	<main>
+		<div>
+			<div th:text="${ricetta.name}"></div>
+		</div>
+		<div th:if="${ricetta.cuoco}">
+			<strong>Cuoco:</strong> 
+			<span th:text="${ricetta.cuoco.name} + ' ' + ${ricetta.cuoco.surname}"></span>
+		</div>
+		<div th:unless="${ricetta.cuoco}">
+			<p>Non c'è nessun cuoco per questa ricetta.</p>
+		</div>
+
+		<strong>Lista degli ingredienti:</strong>
+		<ul>
+			<li th:each="ingrediente: ${ricetta.ingredientiContenuti}">
+				<span
+					th:text="${ingrediente.name}"></span>
+					<!-- + ' ' + ${ingrediente.quantitaToRicetta[ricetta.id]} + ' ' + ${ingrediente.unitaDiMisura} -->
+				<a
+					th:href="@{'/cuoco/updateQuantita/' + ${ingrediente.id} + '/' + ${ricetta.id}}"></a>
+			</li>
+		</ul>
+		<a th:href="@{'/cuoco/updateIngredienti/' + ${ricetta.id}}">
+			<button type="button">Modifica</button>
+		</a>
+		<div>Descrizione:</div>
+		<div>
+			<span th:text="${ricetta.description}"></span>
+		</div>
+		<span th:if="${ricetta.description == null}"> Non disponibile </span>
+		<!-- <a th:href="@{'/cuoco/deleteRicetta/' + ${ricetta.id}}">Elimina</a> -->
+
+	</main>
+
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
+
+</body>
+</html>

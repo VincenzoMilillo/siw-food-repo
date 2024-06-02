@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuova Ricetta</title>
-<link rel="stylesheet" href="/css/ricette-stile.css">
+<link rel="stylesheet" href="/css/newRicetta-stile.css">
 </head>
 <body>
 	<header>
 		<nav>
 			<ul>
-				<li><a href="#">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li><span class="user-info" th:if="${userDetails}"> <span
 						class="username" th:text="${userDetails.username}"></span> <a
 						class="no-underline" th:href="@{/logout}">Logout</a>

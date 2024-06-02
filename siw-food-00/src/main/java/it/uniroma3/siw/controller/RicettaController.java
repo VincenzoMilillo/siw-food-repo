@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 
@@ -73,8 +74,7 @@ public class RicettaController {
 	}
 	
 	@PostMapping("/cuoco/ricetta")
-	public String newRicettaCuoco(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult,
-			@RequestParam("username") String username, Model model) {
+	public String newRicettaCuoco(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult, @RequestParam("username") String username, Model model) {
 		Credentials tempUser = credentialsRepository.findByUsername(username);
 		User currentUser = tempUser.getUser();
 		Cuoco currentCuoco = this.cuocoRepository.findByNameAndSurname(currentUser.getName(), currentUser.getSurname());
@@ -94,5 +94,23 @@ public class RicettaController {
 	public String ShowRicettaCuoco(Model model) {
 		model.addAttribute("ricette", this.ricettaService.findAll());
 		return "/cuoco/manageRicette.html";
+	}
+	
+	@GetMapping(value = "/cuoco/formUpdateRicetta/{id}/{username}")
+	public String formUpdateRicettaCuoco(@PathVariable("id") Long id, @PathVariable("username") String username, Model model, RedirectAttributes redirectAttributes) {
+		Credentials tempUser = credentialsRepository.findByUsername(username); //trova l'utente dal DB
+		User currentUser = tempUser.getUser();	//prendi l'user corrente
+		Ricetta ricetta = ricettaRepository.findById(id).orElse(null);	//prendi la ricetta dal DB
+		// se il cuoco corrente non è il creatore della ricetta...
+		if (ricetta == null || ricetta.getCuoco() == null || !ricetta.getCuoco().getName().equals(currentUser.getName())
+				|| !ricetta.getCuoco().getSurname().equals(currentUser.getSurname())) {
+			// Gestisci il caso di accesso non autorizzato
+			redirectAttributes.addFlashAttribute("messaggioErrore", "Non puoi modificare ricette che non ti appartengono...");
+			return "redirect:/cuoco/manageRicette";
+		}
+
+		// Aggiungi la ricetta al modello e restituisci la vista
+		model.addAttribute("ricetta", ricetta);
+		return "cuoco/formUpdateRicetta.html";
 	}
 }
