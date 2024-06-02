@@ -20,12 +20,15 @@
 		<h1>Aggiungi una ricetta</h1>
 	</header>
 	<main>
-		<form th:action="@{/cuoco/ricetta}" method="POST" th:object="${ricetta}">
+		<form th:action="@{/cuoco/ricetta}" method="POST" th:object="${ricetta}" enctype="multipart/form-data">
 				<h1>Inserisci Ricetta</h1>
 				<input required type="text" placeholder="Nome" th:field="${ricetta.name}">
 				<input required type="text" placeholder="Descrizione" th:field="${ricetta.description}">
-				<input required type="text" placeholder="Immagine" th:field="${ricetta.photo}">
+				<input required type="file" placeholder="Immagine" name="immagine" >
+				<!-- <input required type="text" placeholder="Immagine" th:field="${ricetta.photo}"> -->
 				<input type="hidden" name="username" th:value="${userDetails.username}"/>
+				<br>
+				<br>
 				<button>Conferma</button>
 		</form>
 	</main>
