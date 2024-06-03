@@ -89,7 +89,7 @@ button:hover {
 	<main>
 		<div class="login-box">
 			<form th:action="@{/cuoco/ingrediente}" method="POST"
-				th:object="${ingrediente}">
+				th:object="${ingrediente}" enctype="multipart/form-data">
 				<div class="input">
 					<label>Nome:</label> <input required type="text"
 						th:field="${ingrediente.name}" />
@@ -99,12 +99,8 @@ button:hover {
 						th:field="${ingrediente.season}" />
 				</div>
 				<div class="input">
-					<label>Foto:</label> <input required type="text"
-						th:field="${ingrediente.photo}" />
-				</div>
-				<div class="input">
-					<label>Quantità:</label> <input required type="text"
-						th:field="${ingrediente.quantity}" />
+					<label>Foto:</label> <input required type="file"
+					    placeholder="URL Immagine" name="immagine" >
 				</div>
 				<div class="input">
 					<label>Descrizione:</label> <input required type="text"

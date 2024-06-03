@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.util.StringUtils;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 
 
@@ -19,6 +28,7 @@ public class IngredienteController {
 	
 	@Autowired IngredienteService ingredienteService;
 	@Autowired IngredienteRepository ingredienteRepository;
+	private static String UPLOAD_DIR = "C:\\Users\\utente\\Desktop\\siw-food-ws\\siw-food-00\\src\\main\\resources\\static\\images";
 	
 	@GetMapping("/ingredienti")
 	public String mostraIngredienti(Model model) {
@@ -40,12 +50,31 @@ public class IngredienteController {
 	}
 	
 	@PostMapping("/cuoco/ingrediente")
-	public String newIngredienteCuoco(@ModelAttribute("ingrediente") Ingrediente ingrediente, Model model) {
+	public String newIngredienteCuoco(@ModelAttribute("ingrediente") Ingrediente ingrediente, 
+            @RequestParam("immagine") MultipartFile file, Model model) {
 		if (!ingredienteRepository.existsByName(ingrediente.getName())) {
-			this.ingredienteService.save(ingrediente);
-			model.addAttribute("ingrediente", ingrediente);
-			return "ingrediente.html";
-		} else {
+	        if (!file.isEmpty()) {
+	            try {
+	                // carica il file sul DB
+	                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+	                Path path = Paths.get(UPLOAD_DIR + File.separator + fileName);
+	                Files.write(path, file.getBytes());
+	                ingrediente.setPhoto(fileName);
+
+	                // Salva l'oggetto immagine sul DB
+	                this.ingredienteService.save(ingrediente);
+	                model.addAttribute("ingrediente", ingrediente);
+	                return "ingrediente.html";
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	                model.addAttribute("messaggioErrore", "Errore caricamento dell'immagine");
+	                return "formNewIngrediente.html";
+	            }
+	        } else {
+	            model.addAttribute("messaggioErrore", "immagine vuota...");
+	            return "formNewIngrediente.html";
+	        }
+	    } else {
 			model.addAttribute("messaggioErrore", "Questo ingrediente esiste già");
 			return "/cuoco/formNewIngrediente.html";
 		}

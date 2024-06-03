@@ -1,10 +1,9 @@
 package it.uniroma3.siw.model;
 
 import java.util.Objects;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import jakarta.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Ingrediente {
@@ -16,7 +15,9 @@ public class Ingrediente {
 	public String photo;
 	private String quantity;
 	private String description;
-	
+	@Transient
+	private MultipartFile immagine;
+    
 	/*GETTER E SETTER*/
 	public Long getId() {
 		return id;
