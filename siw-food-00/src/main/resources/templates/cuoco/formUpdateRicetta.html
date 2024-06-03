@@ -43,8 +43,8 @@
 		<br> <strong>Lista degli ingredienti:</strong>
 		<ul style="text-align: center; padding-left: 0;">
 			<li th:each="ingrediente: ${ricetta.ingredientiContenuti}"><span
-				th:text="${ingrediente.name}"></span> <a
-				th:href="@{'/cuoco/updateQuantita/' + ${ingrediente.id} + '/' + ${ricetta.id}}"></a>
+				th:text="${ingrediente.name} + ' ' + ${ingrediente.quantitaToRicetta[ricetta.id]} + ' ' + ${ingrediente.unitaDiMisura}"></span> <a
+				th:href="@{'/cuoco/updateQuantita/' + ${ingrediente.id} + '/' + ${ricetta.id}}"><span>edit</span></a>
 			</li>
 		</ul>
 

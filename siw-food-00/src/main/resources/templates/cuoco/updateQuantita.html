@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aggiorna quantità</title>
+<link rel="stylesheet" href="/css/stile.css">
+</head>
+<body>
+
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Aggiorna quantità e unità di misura</h1>
+	</header>
+	<main>
+		<div>
+			<div th:text="${ricetta.name}"></div>
+		</div>
+		<img th:if="${ricetta.photo.startsWith('https')}"
+			th:src="${ricetta.photo}" style="width: 30%; height: auto;"> <img
+			th:unless="${ricetta.photo.startsWith('https')}"
+			th:src="@{/images/__${ricetta.photo}__}"
+			style="width: 30%; height: auto;">
+
+		<div>
+			<div>
+				<br> <strong>Lista degli ingredienti:</strong>
+				<h5>Attenzione, vanno modificati singolarmente...</h5>
+				<h5>Seleziona la quantità, l'unità di misura e successivamente premi fine, ogni volta che modifichi un ingrediente</h5>
+				<ul>
+					<li>
+						<div th:each="ingrediente: ${ricetta.ingredientiContenuti}">
+							<span
+								th:text="${ingrediente.name} + ': attualmente  ' + ${ingrediente.quantitaToRicetta[ricetta.id]}"></span>
+							<form class="quantita-form" th:action="@{/cuoco/updateQuantita}"
+								method="POST">
+								<input type="hidden" name="ricettaId" th:value="${ricetta.id}" />
+								<input type="hidden" name="ingredienteId"
+									th:value="${ingrediente.id}" /> <input class="input"
+									type="number" id="quantitaValore" name="quantitaValore"
+									th:value="${ingrediente.quantitaToRicetta[ricetta.id]}" min="0"
+									required> <select id="quantitaUnita"
+									name="quantitaUnita" required>
+									<option class="option" value="grammi">Grammi</option>
+									<option class="option" value="millilitri">Millilitri</option>
+									<option class="option" value="cucchiai">Cucchiai</option>
+									<option class="option" value="unità">Unità</option>
+								</select>
+								<button type="submit">Fine</button>
+							</form>
+						</div>
+					</li>
+				</ul>
+				<a
+					th:href="@{'/cuoco/formUpdateRicetta/'+ ${ricetta.id} + '/' + ${userDetails.username}}">
+					<button type="button">Torna alla pagina</button>
+				</a>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
+
+</body>
+</html>

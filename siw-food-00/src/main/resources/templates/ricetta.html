@@ -7,18 +7,18 @@
 <link rel="stylesheet" href="/css/ricetta-stile.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><span class="user-info" th:if="${userDetails}"> <span
-						class="username" th:text="${userDetails.username}"></span> <a
-						class="no-underline" th:href="@{/logout}">Logout</a>
-				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
-			</ul>
-		</nav>
-		<h1>Informazioni della ricetta</h1>
-	</header>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><span class="user-info" th:if="${userDetails}"> <span
+                        class="username" th:text="${userDetails.username}"></span> <a
+                        class="no-underline" th:href="@{/logout}">Logout</a>
+                </span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+            </ul>
+        </nav>
+        <h1>Informazioni della ricetta</h1>
+    </header>
 
     <main>
         <div class="ricetta-info" th:if="${ricetta}">
@@ -32,16 +32,16 @@
             <strong>Lista degli ingredienti:</strong>
             <ul th:if="${not #lists.isEmpty(ricetta.ingredientiContenuti)}">
                 <li th:each="ingrediente: ${ricetta.ingredientiContenuti}">
-                    <span th:text="${ingrediente.name}"></span>
+                    <span th:text="${ingrediente.name} + ' ' + (${ingrediente.quantitaToRicetta[ricetta.id]} == null ? '- non specificato' : ${ingrediente.quantitaToRicetta[ricetta.id]} + ' ' + ${ingrediente.unitaDiMisura})"></span>
                 </li>
             </ul>
             <p th:if="${#lists.isEmpty(ricetta.ingredientiContenuti)}">Ancora nessun ingrediente presente...</p>
         </div>
     </main>
     <footer>
-		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
-		<p>Seguici sui nostri social media!</p>
-		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
-	</footer>
+        <p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+        <p>Seguici sui nostri social media!</p>
+        <p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+    </footer>
 </body>
 </html>

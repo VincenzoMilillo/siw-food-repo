@@ -3,6 +3,8 @@ package it.uniroma3.siw.controller;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,6 +201,36 @@ public class RicettaController {
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 
 		return "cuoco/addIngredienteToRicetta.html";
+	}
+	
+	@GetMapping(value = "/cuoco/updateQuantita/{ingredienteId}/{ricettaId}")
+	public String formUpdateQuantita(@PathVariable("ricettaId") Long ricettaId,
+			@PathVariable("ingredienteId") Long ingredienteId, Model model) {
+		model.addAttribute("ricetta", ricettaRepository.findById(ricettaId).get());
+		model.addAttribute("ingrediente", ingredienteRepository.findById(ingredienteId).get());
+		return "/cuoco/updateQuantita.html";
+	}
+
+	@PostMapping(value = "/cuoco/updateQuantita")
+	public String updateQuantita(@RequestParam("ingredienteId") Long ingredienteId,
+			@RequestParam("ricettaId") Long ricettaId, @RequestParam("quantitaValore") Integer quantitaValore,
+			@RequestParam("quantitaUnita") String quantitaUnita, Model model) {
+		Optional<Ingrediente> ingredienteOpt = ingredienteRepository.findById(ingredienteId);
+		Optional<Ricetta> ricettaOpt = ricettaRepository.findById(ricettaId);
+
+		if (ingredienteOpt.isPresent() && ricettaOpt.isPresent()) {
+			Ingrediente ingrediente = ingredienteOpt.get();
+			Ricetta ricetta = ricettaOpt.get();
+			Map<Long, Integer> quantitaToRicetta = ingrediente.getQuantitaToRicetta();
+			quantitaToRicetta.put(ricetta.getId(), quantitaValore);
+			ingrediente.setUnitaDiMisura(quantitaUnita);
+			ingrediente.setQuantitaToRicetta(quantitaToRicetta);
+			ingredienteRepository.save(ingrediente); // Aggiorna l'ingrediente nel database
+			model.addAttribute("ricetta", ricettaRepository.findById(ricettaId).get());
+			model.addAttribute("ingrediente", ingredienteRepository.findById(ingredienteId).get());
+			model.addAttribute("quantitaValore", quantitaValore);
+		}
+		return "cuoco/formUpdateRicetta.html";
 	}
 	
 	@GetMapping(value = "/cuoco/deleteRicetta/{ricettaId}")

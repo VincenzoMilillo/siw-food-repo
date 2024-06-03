@@ -129,4 +129,43 @@ footer p {
     }
 }
 
+/* Aggiornamento del form di cambiamento della quantità */
+.quantita-form {
+    margin-top: 20px;
+}
+
+input.input,
+select#quantitaUnita {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #1e5622; /* Colore più scuro al passaggio del mouse */
+}
+
+/* Lista degli ingredienti */
+ul {
+    list-style-type: none; /* Rimuove i punti di elenco */
+    padding: 0; /* Rimuove il padding predefinito */
+}
+
+li {
+    margin-bottom: 10px; /* Aggiunge spazio tra gli elementi della lista */
+}
+
+
 

@@ -69,6 +69,19 @@ button {
 button:hover {
 	background-color: #45a049;
 }
+
+/* Footer Styles */
+footer {
+    background-color: #2e7d32;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Assicura che il footer occupi l'intera larghezza della pagina */
+}
+
+
 </style>
 </head>
 <body>
@@ -87,6 +100,7 @@ button:hover {
 	</header>
 
 	<main>
+	<br>
 		<div class="login-box">
 			<form th:action="@{/cuoco/ingrediente}" method="POST"
 				th:object="${ingrediente}" enctype="multipart/form-data">
