@@ -3,15 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Info Cuoco</title>
-<link rel="stylesheet" href="/css/ricette-stile.css">
+<title>Cuoco</title>
+<link rel="stylesheet" href="/css/ricetta-stile.css">
 </head>
 <body>
 	<header>
-		<div>
-			<a href="/"><img src="/images/siw-food-logo.png" width="50%" /></a>
-		</div>
-		<h1>Info Cuoco</h1>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Dati del cuoco selezionato</h1>
 	</header>
 
 	<main>
@@ -25,7 +31,13 @@
 					th:src="@{/images/__${cuoco.photo}__}"
 					style="width: 30%; height: auto;">
 			</div>
+			<h4 th:if="${cuoco.description}" th:text="${cuoco.description}">Info cuoco</h4>
 		</div>
 	</main>
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
 </body>
 </html>

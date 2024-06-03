@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Ricetta {
 	private long id;
 	private String name;
 	private String photo;
+	@Column(length = 2000)
 	private String description;
 	
 	/*ASSOCIAZIONI*/

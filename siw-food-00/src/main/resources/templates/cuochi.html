@@ -11,7 +11,10 @@
 		<nav>
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/login">Login</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
 			</ul>
 		</nav>
 		<h1>Lista dei nostri cuochi verificati</h1>

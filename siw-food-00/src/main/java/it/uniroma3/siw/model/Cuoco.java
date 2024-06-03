@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class Cuoco {
 	public String surname;
 	public LocalDate birthdate;
 	public String photo;
+	@Column(length = 2000)
+	public String description;
 	
 	/*ASSOCIAZIONI*/
 	@OneToMany(mappedBy = "cuoco")
@@ -49,6 +52,12 @@ public class Cuoco {
 	}
 	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getPhoto() {
 		return photo;
