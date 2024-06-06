@@ -21,6 +21,7 @@ public class CuocoController {
 	@Autowired CuocoService cuocoService;
 	@Autowired CuocoRepository cuocoRepository;
 	@Autowired RicettaService ricettaService;
+	private static String UPLOAD_DIR = "C:\\Users\\utente\\Desktop\\siw-food-ws\\siw-food-00\\src\\main\\resources\\static\\images";
 	
 	
 	@GetMapping("/cuochi")

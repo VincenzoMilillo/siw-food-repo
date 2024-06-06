@@ -55,9 +55,14 @@ main {
 }
 
 /* Stili per il footer */
+/* Stili per il footer */
 footer {
     background-color: #2e7d32; /* Verde scuro */
     color: white;
     padding: 20px;
     text-align: center;
+    position: fixed; /* Fissa il footer */
+    bottom: 0; /* Lo posiziona in fondo alla pagina */
+    width: 100%; /* Imposta la larghezza al 100% della finestra */
 }
+

@@ -22,8 +22,8 @@
 
     <main>
         <div class="ricetta-info" th:if="${ricetta}">
-            <h1 class="ricetta-titolo" th:text="${ricetta.name}">Info ricetta</h1>
-            <h3 class="ricetta-descrizione" th:text="${ricetta.description}">Info ricetta</h3>
+            <h1 class="ricetta-titolo" th:text="${ricetta.name} + ' proposta da ' + ${ricetta.cuoco.name} + ' ' + ${ricetta.cuoco.surname}">nome ricetta</h1>
+            <h3 class="ricetta-descrizione" th:text="${ricetta.description}">descrizione ricetta</h3>
             <div class="block-content">
                 <img th:if="${ricetta.photo.startsWith('https')}" th:src="${ricetta.photo}" style="width: 30%; height: auto;">
                 <img th:unless="${ricetta.photo.startsWith('https')}" th:src="@{/images/__${ricetta.photo}__}" style="width: 30%; height: auto;">
