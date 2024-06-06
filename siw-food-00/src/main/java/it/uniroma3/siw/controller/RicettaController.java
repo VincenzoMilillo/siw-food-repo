@@ -53,6 +53,8 @@ public class RicettaController {
 	@Autowired CredentialsRepository credentialsRepository;
 	private static String UPLOAD_DIR = "C:\\Users\\utente\\Desktop\\siw-food-ws\\siw-food-00\\src\\main\\resources\\static\\images";
 	
+	/*PARTE DI CONTOLLER RELATIVA ALL'UTENTE CASUALE*/
+	
 	@GetMapping("/ricette")
 	public String mostraRicette(Model model) {
 		model.addAttribute("ricette", this.ricettaService.findAll());
@@ -69,6 +71,8 @@ public class RicettaController {
 		return "ricetta.html";
 	}
 	
+	/*PARTE DI CONTOLLER RELATIVA AL CUOCO*/
+	
 	@GetMapping(value = "/cuoco/formNewRicetta/{username}")
 	public String formNewRicettaCuoco(@PathVariable("username") String username, Model model) {
 		Credentials tempUser = credentialsRepository.findByUsername(username);
@@ -80,12 +84,6 @@ public class RicettaController {
 		model.addAttribute("ricetta", ricetta);
 		model.addAttribute("userDetails", tempUser);
 		return "cuoco/formNewRicetta.html";
-	}
-	
-	@GetMapping(value = "/admin/formNewRicetta")
-	public String formNewRicetta(Model model) {
-		model.addAttribute("ricetta", new Ricetta());
-		return "/admin/formNewRicetta.html";
 	}
 	
 	@PostMapping("/cuoco/ricetta")
@@ -113,7 +111,7 @@ public class RicettaController {
 					return "ricetta";
 				} catch (IOException e) {
 					e.printStackTrace();
-					model.addAttribute("messaggioErrore", "Errore nel caricamento dell'immagine");
+					model.addAttribute("messaggioErrore", "Errore nel caricamento dell'immagine...");
 					return "formNewRicetta.html";
 				}
 			} else {
@@ -238,6 +236,146 @@ public class RicettaController {
 		Ricetta ricetta = ricettaService.findById(ricettaId);
 		ricetta.setIngredientiContenuti(null);
 		ricettaService.deleteById(ricetta.getId());
-		return "redirect:/cuoco/manageRicette";
+		return "redirect:/cuoco/manageRicette.html";
+	}
+	
+	/*PARTE DI CONTOLLER RELATIVA ALL'ADMIN*/
+
+	@GetMapping(value = "/admin/formNewRicetta")
+	public String formNewRicetta(Model model) {
+		model.addAttribute("ricetta", new Ricetta());
+		return "/admin/formNewRicetta.html";
+	}
+	
+	@PostMapping("/admin/ricetta")
+	public String newRicettaAdmin(@Valid @ModelAttribute("ricetta") Ricetta ricetta, BindingResult bindingResult, @RequestParam("username") String username,
+			@RequestParam("immagine") MultipartFile file, Model model) {
+		Credentials tempUser = credentialsRepository.findByUsername(username);
+		User currentUser = tempUser.getUser();
+		Cuoco currentCuoco = this.cuocoRepository.findByNameAndSurname(currentUser.getName(), currentUser.getSurname());
+		ricetta.setCuoco(currentCuoco);
+
+		this.ricettaValidator.validate(ricetta, bindingResult);
+		if (!bindingResult.hasErrors()) {
+			if (!file.isEmpty()) {
+				try {
+					// Salva il file sul server
+					String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+					Path path = Paths.get(UPLOAD_DIR + File.separator + fileName);
+					Files.write(path, file.getBytes());
+					ricetta.setPhoto(fileName);
+
+					// Salva la ricetta
+					this.ricettaRepository.save(ricetta);
+
+					model.addAttribute("ricetta", ricetta);
+					return "ricetta";
+				} catch (IOException e) {
+					e.printStackTrace();
+					model.addAttribute("messaggioErrore", "Errore nel caricamento dell'immagine...");
+					return "admin/formNewRicetta.html";
+				}
+			} else {
+				model.addAttribute("messaggioErrore", "immagine vuota...");
+				return "admin/formNewRicetta.html";
+			}
+		} else {
+			return "admin/formNewRicetta.html";
+		}
+	}
+	
+	@GetMapping("/admin/manageRicette")
+	public String ShowRicettaAdmin(Model model) {
+		model.addAttribute("ricette", this.ricettaService.findAll());
+		return "/admin/manageRicette.html";
+	}
+	
+	@GetMapping(value = "/admin/formUpdateRicetta/{id}")
+	public String formUpdateRicetta(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("ricetta", ricettaRepository.findById(id).get());
+		return "admin/formUpdateRicetta.html";
+	}
+	
+	@GetMapping("/admin/updateIngredienti/{id}")
+	public String updateIngredienti(@PathVariable("id") Long id, Model model) {
+
+		List<Ingrediente> ingredientiToAdd = this.ingredientiToAdd(id);
+		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
+		model.addAttribute("ricetta", this.ricettaRepository.findById(id).get());
+
+		return "admin/addIngrediente.html";
+	}
+	
+	@GetMapping(value = "/admin/addIngredienteToRicetta/{ingredienteId}/{ricettaId}")
+	public String addIngredienteToRicettaAdmin(@PathVariable("ingredienteId") Long ingredienteId,
+			@PathVariable("ricettaId") Long ricettaId, Model model) {
+		Ricetta ricetta = this.ricettaRepository.findById(ricettaId).get();
+		Ingrediente ingrediente = this.ingredienteRepository.findById(ingredienteId).get();
+		Set<Ingrediente> ingredienti = ricetta.getIngredientiContenuti();
+		ingredienti.add(ingrediente);
+		this.ricettaRepository.save(ricetta);
+
+		List<Ingrediente> ingredientiToAdd = ingredientiToAdd(ricettaId);
+
+		model.addAttribute("ricetta", ricetta);
+		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
+
+		return "admin/addIngredienteToRicetta.html";
+	}
+	
+
+	@GetMapping(value = "/admin/removeIngredienteFromRicetta/{ingredienteId}/{ricettaId}")
+	public String removeIngredienteFromRicettaAdmin(@PathVariable("ingredienteId") Long ingredienteId,
+			@PathVariable("ricettaId") Long ricettaId, Model model) {
+		Ricetta ricetta = this.ricettaRepository.findById(ricettaId).get();
+		Ingrediente ingrediente = this.ingredienteRepository.findById(ingredienteId).get();
+		Set<Ingrediente> ingredientiUtilizzati = ricetta.getIngredientiContenuti();
+		ingredientiUtilizzati.remove(ingrediente);
+		this.ricettaRepository.save(ricetta);
+
+		List<Ingrediente> ingredientiToAdd = ingredientiToAdd(ricettaId);
+
+		model.addAttribute("ricetta", ricetta);
+		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
+
+		return "admin/addIngredienteToRicetta.html";
+	}
+	
+	@GetMapping(value = "/admin/updateQuantita/{ingredienteId}/{ricettaId}")
+	public String formUpdateQuantitaAdmin(@PathVariable("ricettaId") Long ricettaId,
+			@PathVariable("ingredienteId") Long ingredienteId, Model model) {
+		model.addAttribute("ricetta", ricettaRepository.findById(ricettaId).get());
+		model.addAttribute("ingrediente", ingredienteRepository.findById(ingredienteId).get());
+		return "/admin/updateQuantita.html";
+	}
+
+	@PostMapping(value = "/admin/updateQuantita")
+	public String updateQuantitaAdmin(@RequestParam("ingredienteId") Long ingredienteId,
+			@RequestParam("ricettaId") Long ricettaId, @RequestParam("quantitaValore") Integer quantitaValore,
+			@RequestParam("quantitaUnita") String quantitaUnita, Model model) {
+		Optional<Ingrediente> ingredienteOpt = ingredienteRepository.findById(ingredienteId);
+		Optional<Ricetta> ricettaOpt = ricettaRepository.findById(ricettaId);
+
+		if (ingredienteOpt.isPresent() && ricettaOpt.isPresent()) {
+			Ingrediente ingrediente = ingredienteOpt.get();
+			Ricetta ricetta = ricettaOpt.get();
+			Map<Long, Integer> quantitaToRicetta = ingrediente.getQuantitaToRicetta();
+			quantitaToRicetta.put(ricetta.getId(), quantitaValore);
+			ingrediente.setUnitaDiMisura(quantitaUnita);
+			ingrediente.setQuantitaToRicetta(quantitaToRicetta);
+			ingredienteRepository.save(ingrediente); // Aggiorna l'ingrediente nel database
+			model.addAttribute("ricetta", ricettaRepository.findById(ricettaId).get());
+			model.addAttribute("ingrediente", ingredienteRepository.findById(ingredienteId).get());
+			model.addAttribute("quantitaValore", quantitaValore);
+		}
+		return "admin/formUpdateRicetta.html";
+	}
+	
+	@GetMapping(value = "/admin/deleteRicetta/{ricettaId}")
+	public String deleteRicettaAdmin(@PathVariable("ricettaId") Long ricettaId, Model model) {
+		Ricetta ricetta = ricettaService.findById(ricettaId);
+		ricetta.setIngredientiContenuti(null);
+		ricettaService.deleteById(ricetta.getId());
+		return "redirect:/admin/manageRicette";
 	}
 }

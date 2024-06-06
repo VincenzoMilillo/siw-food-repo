@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aggiungi ingrediente a ricetta</title>
+<link rel="stylesheet" href="/css/addIngrediente-stile.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><span class="user-info" th:if="${userDetails}"> <span
+                        class="username" th:text="${userDetails.username}"></span> <a
+                        class="no-underline" th:href="@{/logout}">Logout</a>
+                </span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+            </ul>
+        </nav>
+        <h1>Aggiungi un ingrediente alla ricetta</h1>
+    </header>
+    <main>
+        <div>
+            <h3 th:text="'Ingredienti della ricetta' +' ' + ${ricetta.name}"></h3>
+        </div>
+        <div th:if="${ricetta.ingredientiContenuti.isEmpty()}">Questa ricetta non ha ingredienti al momento...</div>
+        <div>
+            <ul class="ingredienti-list">
+                <li th:each="ingrediente : ${ricetta.ingredientiContenuti}">
+                    <span th:text="${ingrediente.name}"></span>
+                    <a class="rimuovi-link" th:href="@{'/admin/removeIngredienteFromRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">- rimuovi</a></li>
+            </ul>
+            <div>
+                <div>Ingredienti che si possono aggiungere:</div>
+                <ul class="ingredienti-list">
+                    <li th:each="ingrediente : ${ingredientiToAdd}">
+                        <span th:text="${ingrediente.name}"></span>
+                        <a class="aggiungi-link" th:href="@{'/admin/addIngredienteToRicetta/'+ ${ingrediente.id}+'/'+${ricetta.id}}">+ aggiungi</a></li>
+                </ul>
+            </div>
+            <div>
+                <a
+                    th:href="@{'/admin/formUpdateRicetta/'+ ${ricetta.id} + '/' + ${userDetails.username}}">
+                    <button type="button">Fine</button>
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+        <p>Seguici sui nostri social media!</p>
+        <p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuova Ricetta</title>
-<link rel="stylesheet" href="/css/ricette-stile.css">
+<link rel="stylesheet" href="/css/newRicetta-stile.css">
 </head>
 <body>
 	<header>
@@ -20,31 +20,16 @@
 		<h1>Aggiungi una ricetta</h1>
 	</header>
 	<main>
-		<form th:action="@{/cuoco/ricetta}" method="POST" th:object="${ricetta}">
-
-			<div>
-				<label>Nome:</label> <span><input required type="text"
-					th:field="${ricetta.name}" /></span>
-			</div>
-
-			<div>
-				<label>Descrizione:</label> <span><input required type="text"
-					th:field="${ricetta.description}" /></span>
-			</div>
-			<div>
-				<label>Foto:</label> <span><input required type="text"
-					th:field="${ricetta.photo}" /></span>
-			</div>
-
-			<div>
-				<label>Codice del cuoco:</label> <span><input required
-					type="number" th:field="${ricetta.cuoco}" /></span>
-			</div>
-			<input type="hidden" name="username" th:value="${userDetails.username}"/>
-
-			<div>
-				<span><button type="submit">Conferma</button></span>
-			</div>
+		<form th:action="@{/admin/ricetta}" method="POST" th:object="${ricetta}" enctype="multipart/form-data">
+				<h1>Inserisci Ricetta</h1>
+				<input required type="text" placeholder="Nome" th:field="${ricetta.name}">
+				<input required type="text" placeholder="Descrizione" th:field="${ricetta.description}">
+				<input required type="file" placeholder="Immagine" name="immagine" >
+				<!-- <input required type="text" placeholder="Immagine" th:field="${ricetta.photo}"> -->
+				<input type="hidden" name="username" th:value="${userDetails.username}"/>
+				<br>
+				<br>
+				<button>Conferma</button>
 		</form>
 	</main>
 	<footer>

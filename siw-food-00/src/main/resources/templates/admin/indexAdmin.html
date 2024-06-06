@@ -10,14 +10,14 @@
 	<header>
 		<nav>
 			<ul>
-				<li><a href="#">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li><span class="user-info" th:if="${userDetails}"> <span
 						class="username" th:text="${userDetails.username}"></span> <a
 						class="no-underline" th:href="@{/logout}">Logout</a>
 				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
 			</ul>
 		</nav>
-		<h1>Admin, benvenuto nel progetto siw-food</h1>
+		<h1>Cuoco, benvenuto nel progetto siw-food</h1>
 	</header>
 
 
@@ -43,6 +43,21 @@
 			<h2>Oppure fatti ispirare dagli ingredienti...</h2>
 			<ul>
 				<li><a href="/ingredienti">Ingredienti</a></li>
+			</ul>
+			<h2>Gestione dei cuochi</h2>
+			<ul>
+				<li><a th:href="@{'/admin/formNewCuoco/' + ${userDetails.username}}">Inserisci un nuovo cuoco</a></li>
+				<li><a href="/admin/manageCuochi">Modifica un cuoco esistente</a></li>
+			</ul>
+			<h2>Gestione delle ricette</h2>
+			<ul>
+				<li><a th:href="@{'/admin/formNewRicetta'}">Inserisci nuova ricetta</a></li>
+				<li><a href="/admin/manageRicette">Modifica una ricetta esistente</a></li>
+			</ul>
+			<h2>Gestione degli ingredienti</h2>
+			<ul>
+				<li><a href="/admin/formNewIngrediente">Inserisci nuovo ingrediente</a></li>
+				<li><a href="/admin/manageIngredienti">Modifica un ingrediente esistente</a></li>
 			</ul>
 		</section>
 	</main>

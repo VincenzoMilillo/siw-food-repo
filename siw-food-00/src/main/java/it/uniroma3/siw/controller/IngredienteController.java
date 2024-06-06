@@ -30,6 +30,9 @@ public class IngredienteController {
 	@Autowired IngredienteRepository ingredienteRepository;
 	private static String UPLOAD_DIR = "C:\\Users\\utente\\Desktop\\siw-food-ws\\siw-food-00\\src\\main\\resources\\static\\images";
 	
+	
+	/*PARTE DI CONTOLLER RELATIVA ALL'UTENTE CASUALE*/
+	
 	@GetMapping("/ingredienti")
 	public String mostraIngredienti(Model model) {
 		model.addAttribute("ingredienti", this.ingredienteService.findAll());
@@ -42,6 +45,8 @@ public class IngredienteController {
 		model.addAttribute("ingrediente", ingrediente);
 		return "ingrediente.html";
 	}
+	
+	/*PARTE DI CONTOLLER RELATIVA AL CUOCO*/
 	
 	@GetMapping(value="/cuoco/formNewIngrediente")
 	public String formNewIngredienteCuoco(Model model) {
@@ -80,5 +85,54 @@ public class IngredienteController {
 		}
 	}
 	
+	/*PARTE DI CONTOLLER RELATIVA ALL'ADMIN*/
 	
+	@GetMapping(value = "/admin/formNewIngrediente")
+	public String formNewIngrediente(Model model) {
+		model.addAttribute("ingrediente", new Ingrediente());
+		return "/admin/formNewIngrediente.html";
+	}
+	
+	@PostMapping("/admin/ingrediente")
+	public String newIngrediente(@ModelAttribute("ingrediente") Ingrediente ingrediente, 
+	                             @RequestParam("immagine") MultipartFile file, Model model) {
+	    if (!ingredienteRepository.existsByName(ingrediente.getName())) {
+	        if (!file.isEmpty()) {
+	            try {
+	                // Salva il file sul server
+	                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+	                Path path = Paths.get(UPLOAD_DIR + File.separator + fileName);
+	                Files.write(path, file.getBytes());
+	                ingrediente.setPhoto(fileName);
+
+	                // Salva l'ingrediente
+	                this.ingredienteService.save(ingrediente);
+	                model.addAttribute("ingrediente", ingrediente);
+	                return "ingrediente.html";
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	                model.addAttribute("messaggioErrore", "Errore caricamento dell'immagine");
+	                return "formNewIngrediente";
+	            }
+	        } else {
+	            model.addAttribute("messaggioErrore", "immagine vuota...");
+	            return "formNewIngrediente";
+	        }
+	    } else {
+	        model.addAttribute("messaggioErrore", "Questo ingrediente esiste già");
+	        return "formNewIngrediente";
+	    }
+	}
+	
+	@GetMapping("/admin/manageIngredienti")
+	public String ShowIngredientiAdmin(Model model) {
+		model.addAttribute("ingredienti", this.ingredienteService.findAll());
+		return "/admin/manageIngredienti.html";
+	}
+	
+	@GetMapping(value = "/admin/deleteIngrediente/{ingredienteId}")
+	public String deleteIngredienteAdmin(@PathVariable("ingredienteId") Long ingredienteId, Model model) {
+		ingredienteService.deleteById(ingredienteId);
+        return "redirect:/admin/manageIngredienti";
+	}
 }
