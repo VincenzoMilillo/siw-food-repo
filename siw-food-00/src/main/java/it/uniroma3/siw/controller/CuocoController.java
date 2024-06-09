@@ -60,7 +60,7 @@ public class CuocoController {
 		return "/admin/manageCuochi.html";
 	}
 	
-	@PostMapping("/admin/cuochi")
+	@PostMapping("/admin/cuoco")
 	public String newCuoco(@ModelAttribute("cuoco") Cuoco cuoco, @RequestParam("immagine") MultipartFile file, Model model) {
 	    if (!cuocoRepository.existsByNameAndSurname(cuoco.getName(), cuoco.getSurname())) {
 	        if (!file.isEmpty()) {
@@ -79,15 +79,15 @@ public class CuocoController {
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	                model.addAttribute("messaggioErrore", "Errore nel caricamento dell'immagine...");
-	                return "formNewCuoco.html";
+	                return "/admin/formNewCuoco.html";
 	            }
 	        } else {
 	            model.addAttribute("messaggioErrore", "immagine vuota...");
-	            return "formNewCuoco.html";
+	            return "/admin/formNewCuoco.html";
 	        }
 	    } else {
 	        model.addAttribute("messaggioErrore", "Questo cuoco è già presente...");
-	        return "formNewCuoco.html";
+	        return "/admin/formNewCuoco.html";
 	    }
 	}
 }

@@ -303,7 +303,7 @@ public class RicettaController {
 		model.addAttribute("ingredientiToAdd", ingredientiToAdd);
 		model.addAttribute("ricetta", this.ricettaRepository.findById(id).get());
 
-		return "admin/addIngrediente.html";
+		return "admin/addIngredienteToRicetta.html";
 	}
 	
 	@GetMapping(value = "/admin/addIngredienteToRicetta/{ingredienteId}/{ricettaId}")
@@ -377,5 +377,25 @@ public class RicettaController {
 		ricetta.setIngredientiContenuti(null);
 		ricettaService.deleteById(ricetta.getId());
 		return "redirect:/admin/manageRicette";
+	}
+	
+	@GetMapping(value = "/admin/setCuocoToRicetta/{cuocoId}/{ricettaId}")
+	public String setDirectorToMovie(@PathVariable("cuocoId") Long cuocoId, @PathVariable("ricettaId") Long ricettaId,
+			Model model) {
+
+		Cuoco cuoco = this.cuocoService.findById(cuocoId);
+		Ricetta ricetta = this.ricettaRepository.findById(ricettaId).get();
+		ricetta.setCuoco(cuoco);
+		this.ricettaRepository.save(ricetta);
+
+		model.addAttribute("ricetta", ricetta);
+		return "admin/formUpdateRicetta.html";
+	}
+	
+	@GetMapping(value = "/admin/addCuoco/{idRicetta}")
+	public String addArtist(@PathVariable("idRicetta") Long ricettaId, Model model) {
+		model.addAttribute("cuochi", cuocoService.findAll());
+		model.addAttribute("ricetta", ricettaRepository.findById(ricettaId).get());
+		return "/admin/addCuoco.html";
 	}
 }

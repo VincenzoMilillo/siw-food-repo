@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuova Ricetta</title>
+<link rel="stylesheet" href="/css/newRicetta-stile.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Aggiungi un cuoco</h1>
+	</header>
+	<main>
+		<form th:action="@{/admin/cuoco}" method="POST" th:object="${cuoco}" enctype="multipart/form-data">
+				<h1>Inserisci Cuoco</h1>
+				<input required type="text" placeholder="Nome" th:field="${cuoco.name}">
+				<input required type="text" placeholder="Cognome" th:field="${cuoco.surname}">
+				<input required type="text" placeholder="Descrizione" th:field="${cuoco.description}">
+				<input required type="file" placeholder="Immagine" name="immagine" >
+				<input required type="date" placeholder="Data di Nascita" th:field="${cuoco.birthdate}" />
+				<br>
+				<br>
+				<button>Conferma</button>
+		</form>
+	</main>
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
+</body>
+</html>

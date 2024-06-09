@@ -73,11 +73,11 @@ public class IngredienteController {
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	                model.addAttribute("messaggioErrore", "Errore caricamento dell'immagine");
-	                return "formNewIngrediente.html";
+	                return "/cuoco/formNewIngrediente.html";
 	            }
 	        } else {
 	            model.addAttribute("messaggioErrore", "immagine vuota...");
-	            return "formNewIngrediente.html";
+	            return "/cuoco/formNewIngrediente.html";
 	        }
 	    } else {
 			model.addAttribute("messaggioErrore", "Questo ingrediente esiste già");
@@ -112,15 +112,15 @@ public class IngredienteController {
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	                model.addAttribute("messaggioErrore", "Errore caricamento dell'immagine");
-	                return "formNewIngrediente";
+	                return "/admin/formNewIngrediente.html";
 	            }
 	        } else {
 	            model.addAttribute("messaggioErrore", "immagine vuota...");
-	            return "formNewIngrediente";
+	            return "/admin/formNewIngrediente.html";
 	        }
 	    } else {
 	        model.addAttribute("messaggioErrore", "Questo ingrediente esiste già");
-	        return "formNewIngrediente";
+	        return "/admin/formNewIngrediente.html";
 	    }
 	}
 	

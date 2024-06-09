@@ -44,12 +44,12 @@
 		<ul style="text-align: center; padding-left: 0;">
 			<li th:each="ingrediente: ${ricetta.ingredientiContenuti}"><span
 				th:text="${ingrediente.name} + ' ' + ${ingrediente.quantitaToRicetta[ricetta.id]} + ' ' + ${ingrediente.unitaDiMisura}"></span> <a
-				th:href="@{'/cuoco/updateQuantita/' + ${ingrediente.id} + '/' + ${ricetta.id}}"><span>edit</span></a>
+				th:href="@{'/cuoco/updateQuantita/' + ${ingrediente.id} + '/' + ${ricetta.id}}"><span>modifica</span></a>
 			</li>
 		</ul>
 
 		<a th:href="@{'/cuoco/updateIngredienti/' + ${ricetta.id}}">
-			<button type="button">Modifica</button>
+			<button type="button">Modifica lista Ingredienti</button>
 		</a> <br> <br>
 		<h3>Descrizione:</h3>
 		<div>

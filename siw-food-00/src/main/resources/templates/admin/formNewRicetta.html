@@ -24,7 +24,7 @@
 				<h1>Inserisci Ricetta</h1>
 				<input required type="text" placeholder="Nome" th:field="${ricetta.name}">
 				<input required type="text" placeholder="Descrizione" th:field="${ricetta.description}">
-				<input required type="file" placeholder="Immagine" name="immagine" >
+				<input required type="file" placeholder="Immagine" name="immagine">
 				<!-- <input required type="text" placeholder="Immagine" th:field="${ricetta.photo}"> -->
 				<input type="hidden" name="username" th:value="${userDetails.username}"/>
 				<br>
