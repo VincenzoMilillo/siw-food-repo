@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modifica Ingredienti</title>
+<link rel="stylesheet" href="/css/manage.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Gestisci gli ingredienti</h1>
+	</header>
+	<main>
+		<h4>Scegli una ingrediente qualsiasi da visualizzare o cancellare:</h4>
+		<h3>Attenzione, premendo elimina non sarà richiesta un ulteriore conferma...</h3>
+		<ul class="ricette-list" th:if="${!ingredienti.isEmpty()}">
+			<li th:each="ingrediente : ${ingredienti}">
+				<a th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.name}"></a> 
+				<a th:href="@{'/admin/deleteIngrediente' + '/' + ${ingrediente.id}}" style="color: red;">Elimina</a>
+			</li>
+		</ul>
+	</main>
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
+</body>
+</html>
+
+
+
+

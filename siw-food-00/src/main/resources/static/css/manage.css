@@ -33,6 +33,8 @@ header nav ul li a:hover {
 main {
     padding: 20px;
     font-size: 24px;
+    min-height: calc(100vh - 160px); /* Assicura che il contenuto riempia lo spazio disponibile */
+    /* Calcolo: 100vh - altezza header (60px) - altezza footer (20px) - padding (40px) */
 }
 
 /* Stili per la lista delle ricette */
@@ -61,8 +63,9 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
-    position: fixed; /* Fissa il footer */
-    bottom: 0; /* Lo posiziona in fondo alla pagina */
-    width: 100%; /* Imposta la larghezza al 100% della finestra */
+    position: relative; /* Posizionamento relativo */
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px; /* Aggiunge spazio sopra il footer */
 }
 
