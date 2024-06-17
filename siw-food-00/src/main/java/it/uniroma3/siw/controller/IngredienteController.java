@@ -129,7 +129,7 @@ public class IngredienteController {
 	
 	@GetMapping(value = "/admin/deleteIngrediente/{ingredienteId}")
 	public String deleteIngredienteAdmin(@PathVariable("ingredienteId") Long ingredienteId, Model model) {
-		ingredienteService.deleteById(ingredienteId);
+		ingredienteService.deleteIngrediente(ingredienteId);
         return "redirect:/admin/manageIngredienti";
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,9 +27,9 @@ public class Ricetta {
 	private String description;
 	
 	/*ASSOCIAZIONI*/
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.DETACH)
 	private Cuoco cuoco;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.DETACH)
 	private Set<Ingrediente> ingredientiContenuti;
 	
 	@Transient

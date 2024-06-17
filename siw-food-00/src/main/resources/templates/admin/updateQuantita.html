@@ -22,7 +22,7 @@
 	</header>
 	<main>
 		<div>
-			<div th:text="${ricetta.name}"></div>
+			<h3 th:text="${ricetta.name}"></h3>
 		</div>
 		<img th:if="${ricetta.photo.startsWith('https')}"
 			th:src="${ricetta.photo}" style="width: 30%; height: auto;"> <img
@@ -39,6 +39,7 @@
 				<ul>
 					<li>
 						<div th:each="ingrediente: ${ricetta.ingredientiContenuti}">
+						<br>
 							<span
 								th:text="${ingrediente.name} + ': attualmente  ' + ${ingrediente.quantitaToRicetta[ricetta.id]}"></span>
 							<form class="quantita-form" th:action="@{/admin/updateQuantita}"
