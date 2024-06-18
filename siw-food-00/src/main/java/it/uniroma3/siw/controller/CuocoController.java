@@ -11,8 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Cuoco;
+import it.uniroma3.siw.model.Ricetta;
+import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.repository.CredentialsRepository;
 import it.uniroma3.siw.repository.CuocoRepository;
+import it.uniroma3.siw.repository.UserRepository;
 import it.uniroma3.siw.service.CuocoService;
 import it.uniroma3.siw.service.RicettaService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +34,9 @@ public class CuocoController {
 	@Autowired CuocoService cuocoService;
 	@Autowired CuocoRepository cuocoRepository;
 	@Autowired RicettaService ricettaService;
+	@Autowired UserRepository userRepository;
+	@Autowired CredentialsRepository credentialsRepository;
+	
 	private static String UPLOAD_DIR = "C:\\Users\\utente\\Desktop\\siw-food-ws\\siw-food-00\\src\\main\\resources\\static\\images";
 	
 	/*PARTE DI CONTOLLER RELATIVA ALL'UTENTE CASUALE*/
@@ -62,7 +70,11 @@ public class CuocoController {
 	
 	@GetMapping(value = "/admin/deleteCuoco/{cuocoId}")
 	public String deleteCuocoAdmin(@PathVariable("cuocoId") Long cuocoId, Model model) {
-		cuocoService.deleteById(cuocoId);
+		Cuoco cuoco = cuocoService.findById(cuocoId);
+		User userAssociato = userRepository.findByNameAndSurname(cuoco.getName(), cuoco.getSurname());
+		Credentials credentialsAssociate = credentialsRepository.findById(userAssociato.getId()).get();
+		credentialsRepository.deleteById(credentialsAssociate.getId());
+		cuocoRepository.deleteById(cuocoId);
 		return "redirect:/admin/manageCuochi";
 	}
 	

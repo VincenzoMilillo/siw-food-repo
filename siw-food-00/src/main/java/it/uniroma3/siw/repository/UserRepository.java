@@ -6,7 +6,9 @@ import it.uniroma3.siw.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 	
-	public User findByName(String nome);
+	public User findByName(String name);
 	
-	public User findBySurname(String cognome);
+	public User findBySurname(String surname);
+
+	public User findByNameAndSurname(String name, String surname);
 }

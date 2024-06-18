@@ -21,7 +21,7 @@
 	</header>
 	<main>
 		<h4>Scegli una ingrediente qualsiasi da visualizzare o cancellare:</h4>
-		<h3>Attenzione, premendo elimina non sarà richiesta un ulteriore conferma...</h3>
+		<h4 style="color: red;">Attenzione, premendo elimina non sarà richiesta un ulteriore conferma...</h4>
 		<ul class="ricette-list" th:if="${!ingredienti.isEmpty()}">
 			<li th:each="ingrediente : ${ingredienti}">
 				<a th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.name}"></a> 

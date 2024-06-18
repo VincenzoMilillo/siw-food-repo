@@ -26,8 +26,8 @@
 		</div>
 		<div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
 		<div>
+			<h5 style="color: red;">Attenzione, premendo elimina non sarà richiesta un ulteriore conferma. Inoltre cancellando un cuoco verranno automaticamente cancellate le ricette che ha creato !!</h5>
 			<div>
-			<h5>Attenzione, premendo elimina non sarà richiesta un ulteriore conferma...</h5>
 				<ul th:if="${!cuochi.isEmpty()}">
 					<li th:each="cuoco : ${cuochi}">
    						<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}" th:text="${cuoco.name} + ' ' + ${cuoco.surname}" class="cuoco-name"></a> 
