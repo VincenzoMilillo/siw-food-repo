@@ -38,6 +38,7 @@
 				<ul>
 					<li>
 						<div th:each="ingrediente: ${ricetta.ingredientiContenuti}">
+						<br>
 							<span
 								th:text="${ingrediente.name} + ': attualmente  ' + ${ingrediente.quantitaToRicetta[ricetta.id]}"></span>
 							<form class="quantita-form" th:action="@{/cuoco/updateQuantita}"

@@ -27,8 +27,8 @@
 		<ul class="ricette-list" th:if="${!ricette.isEmpty()}">
 			<li th:each="ricetta : ${ricette}"><a
 				th:href="@{'/ricetta' + '/' + ${ricetta.id}}"
-				th:text="${ricetta.name}"></a> <a th:if="${userDetails != null}"
-				th:href="@{'/cuoco/formUpdateRicetta' + '/' + ${ricetta.id} + '/' + ${userDetails.username}}"> - modifica</a>
+				th:text="${ricetta.name} + ' (' + ${ricetta.cuoco.surname} + ')'"></a> <span>--- </span><a th:if="${userDetails != null}"
+				th:href="@{'/cuoco/formUpdateRicetta' + '/' + ${ricetta.id} + '/' + ${userDetails.username}}"> modifica</a>
 			</li>
 		</ul>
 	</main>
