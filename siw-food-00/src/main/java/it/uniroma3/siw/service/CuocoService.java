@@ -30,4 +30,8 @@ public class CuocoService {
 		return cuocoRepository.findByNameAndSurname(nome, cognome);
 	}
 
+	public void deleteById(Long id) {
+		cuocoRepository.deleteById(id);
+	}
+
 }

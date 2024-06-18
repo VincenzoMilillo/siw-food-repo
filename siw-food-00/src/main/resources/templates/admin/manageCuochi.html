@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modifica Cuochi</title>
+<link rel="stylesheet" href="/css/manage.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><span class="user-info" th:if="${userDetails}"> <span
+						class="username" th:text="${userDetails.username}"></span> <a
+						class="no-underline" th:href="@{/logout}">Logout</a>
+				</span> <a th:unless="${userDetails}" href="/login">Login</a></li>
+			</ul>
+		</nav>
+		<h1>Modifica un cuoco registrato</h1>
+	</header>
+
+	<main>
+		<div class="list-title">
+			<h3 class>Lista dei cuochi</h3>
+		</div>
+		<div th:if="${cuochi.isEmpty()}">Non ci sono cuochi nel sistema</div>
+		<div>
+			<div>
+			<h5>Attenzione, premendo elimina non sarà richiesta un ulteriore conferma...</h5>
+				<ul th:if="${!cuochi.isEmpty()}">
+					<li th:each="cuoco : ${cuochi}">
+   						<a th:href="@{'/cuoco' + '/' + ${cuoco.id}}" th:text="${cuoco.name} + ' ' + ${cuoco.surname}" class="cuoco-name"></a> 
+   						<span>--- </span>
+    					<a th:href="@{'/admin/deleteCuoco/' + ${cuoco.id}}" class="elimina-link">Elimina</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</main>
+	<footer>
+		<p>Contattaci: vincenzo.milillo2002@gmail.com</p>
+		<p>Seguici sui nostri social media!</p>
+		<p>&copy; 2024 siw-food. Tutti i diritti riservati.</p>
+	</footer>
+</body>
+</html>

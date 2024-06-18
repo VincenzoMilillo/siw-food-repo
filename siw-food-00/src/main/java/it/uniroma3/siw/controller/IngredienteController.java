@@ -31,7 +31,7 @@ public class IngredienteController {
 	/*PARTE DI CONTOLLER RELATIVA ALL'UTENTE CASUALE*/
 	
 	@GetMapping("/ingredienti")
-	public String mostraIngredienti(Model model) {
+	public String showIngredienti(Model model) {
 		model.addAttribute("ingredienti", this.ingredienteService.findAll());
 		return "ingredienti.html";
 	}
@@ -122,7 +122,7 @@ public class IngredienteController {
 	}
 	
 	@GetMapping("/admin/manageIngredienti")
-	public String ShowIngredientiAdmin(Model model) {
+	public String showIngredientiAdmin(Model model) {
 		model.addAttribute("ingredienti", this.ingredienteService.findAll());
 		return "/admin/manageIngredienti.html";
 	}

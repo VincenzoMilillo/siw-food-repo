@@ -34,7 +34,7 @@ public class CuocoController {
 	/*PARTE DI CONTOLLER RELATIVA ALL'UTENTE CASUALE*/
 	
 	@GetMapping("/cuochi")
-	public String mostraCuochi(Model model) {
+	public String showCuochi(Model model) {
 		model.addAttribute("cuochi", this.cuocoService.findAll());
 		return "cuochi.html";
 	}
@@ -55,9 +55,15 @@ public class CuocoController {
 	}
 	
 	@GetMapping("/admin/manageCuochi")
-	public String ShowCuocoAdmin(Model model) {
+	public String showCuocoAdmin(Model model) {
 		model.addAttribute("cuochi", this.cuocoService.findAll());
 		return "/admin/manageCuochi.html";
+	}
+	
+	@GetMapping(value = "/admin/deleteCuoco/{cuocoId}")
+	public String deleteCuocoAdmin(@PathVariable("cuocoId") Long cuocoId, Model model) {
+		cuocoService.deleteById(cuocoId);
+		return "redirect:/admin/manageCuochi";
 	}
 	
 	@PostMapping("/admin/cuoco")

@@ -24,7 +24,8 @@
 		<ul class="ricette-list" th:if="${!ricette.isEmpty()}">
 			<li th:each="ricetta : ${ricette}">
 				<a th:href="@{'/ricetta' + '/' + ${ricetta.id}}" th:text="${ricetta.name}"></a> 
-				<a th:href="@{'/admin/formUpdateRicetta' + '/' + ${ricetta.id}}"> - modifica</a>
+				<span>--- </span>
+				<a th:href="@{'/admin/formUpdateRicetta' + '/' + ${ricetta.id}}"> modifica</a>
 			</li>
 		</ul>
 	</main>

@@ -56,6 +56,28 @@ main {
     text-decoration: underline;
 }
 
+/* Stile per i nomi dei cuochi */
+.cuoco-name {
+    color: #2e7d32; /* Verde scuro */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.cuoco-name:hover {
+    text-decoration: underline; /* Aggiunge la sottolineatura al passaggio del mouse */
+}
+
+/* Stile per il link "Elimina" */
+.elimina-link {
+    color: red; /* Colore rosso */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.elimina-link:hover {
+    text-decoration: underline; /* Aggiunge la sottolineatura al passaggio del mouse */
+}
+
+
+
 /* Stili per il footer */
 /* Stili per il footer */
 footer {

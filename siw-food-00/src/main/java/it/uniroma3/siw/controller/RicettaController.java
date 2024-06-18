@@ -124,7 +124,7 @@ public class RicettaController {
 	}
 	
 	@GetMapping("/cuoco/manageRicette")
-	public String ShowRicettaCuoco(Model model) {
+	public String showRicettaCuoco(Model model) {
 		model.addAttribute("ricette", this.ricettaService.findAll());
 		return "/cuoco/manageRicette.html";
 	}
@@ -285,7 +285,7 @@ public class RicettaController {
 	}
 	
 	@GetMapping("/admin/manageRicette")
-	public String ShowRicettaAdmin(Model model) {
+	public String showRicettaAdmin(Model model) {
 		model.addAttribute("ricette", this.ricettaService.findAll());
 		return "/admin/manageRicette.html";
 	}
