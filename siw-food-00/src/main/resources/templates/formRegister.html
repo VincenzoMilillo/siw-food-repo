@@ -46,6 +46,10 @@
                     <span th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" th:style="'color:red'"></span>
                 </div>
                 <div class="input">
+                    <input type="text" placeholder="Descrizione" required th:field="${user.email}" />
+                    <span th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" th:style="'color:red'"></span>
+                </div>
+                <div class="input">
                     <input type="date" placeholder="Data di Nascita" required th:field="${user.birthdate}" />
                     <span th:if="${#fields.hasErrors('user.birthdate')}" th:errors="${user.birthdate}" th:style="'color:red'"></span>
                 </div>

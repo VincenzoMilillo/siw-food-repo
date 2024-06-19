@@ -3,6 +3,7 @@ package it.uniroma3.siw.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class User {
 	private String name;
 	private String surname;
 	private String email;
+	@Column(length = 2000)
+	public String description;
 	private LocalDate birthdate;
 	public String photo;
 
@@ -45,6 +48,14 @@ public class User {
 		this.surname = surname;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String getEmail() {
 		return email;
 	}

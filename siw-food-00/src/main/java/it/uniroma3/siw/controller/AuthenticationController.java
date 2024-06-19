@@ -96,6 +96,7 @@ public class AuthenticationController {
             nuovoCuoco.name = user.getName();
             nuovoCuoco.surname = user.getSurname();
             nuovoCuoco.birthdate = user.getBirthdate();
+            nuovoCuoco.description = user.getDescription();
             nuovoCuoco.photo = user.getPhoto();
             this.cuocoService.save(nuovoCuoco);
             return "registrationSuccessful.html";
