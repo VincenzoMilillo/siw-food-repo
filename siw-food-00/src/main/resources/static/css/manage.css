@@ -1,4 +1,9 @@
-/* Stili specifici per la pagina delle ricette */
+/* Reset di base per margini e padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /* Stili per l'header */
 header {
