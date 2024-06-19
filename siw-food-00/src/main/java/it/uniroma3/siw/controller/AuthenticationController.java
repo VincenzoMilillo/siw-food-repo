@@ -26,14 +26,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AuthenticationController {
 	
-	@Autowired
-	private CredentialsService credentialsService;
+	@Autowired CredentialsService credentialsService;
 
-    @Autowired
-	private UserService userService;
+    @Autowired UserService userService;
     
-    @Autowired
-    private CuocoService cuocoService;
+    @Autowired CuocoService cuocoService;
     
     @GetMapping(value = "/login") 
 	public String showLoginForm (Model model) {

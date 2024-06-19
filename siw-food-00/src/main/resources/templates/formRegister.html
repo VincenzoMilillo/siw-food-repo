@@ -49,6 +49,11 @@
                     <input type="date" placeholder="Data di Nascita" required th:field="${user.birthdate}" />
                     <span th:if="${#fields.hasErrors('user.birthdate')}" th:errors="${user.birthdate}" th:style="'color:red'"></span>
                 </div>
+                <br>
+                <div class="input">
+					<input required type="file" placeholder="Immagine" th:field="${user.photo}">
+					<span th:if="${#fields.hasErrors('user.photo')}" th:errors="${user.photo}" th:style="'color:red'"></span>
+				</div>
                 <div>
                 <br>
                     <button type="submit">Registrati</button>
