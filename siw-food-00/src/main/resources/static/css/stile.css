@@ -167,5 +167,41 @@ li {
     margin-bottom: 10px; /* Aggiunge spazio tra gli elementi della lista */
 }
 
+/* Styles for the links section */
+.links {
+    background-color: #f9f9f9; /* Light background color */
+    padding: 20px; /* Space inside the section */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 600px; /* Maximum width for the section */
+    margin: 20px auto; /* Center the section */
+    text-align: center; /* Center text */
+}
+
+.links h2 {
+    color: #333; /* Darker text color for the headings */
+    font-family: 'Arial', sans-serif; /* Font style */
+    margin-bottom: 15px; /* Space below the headings */
+}
+
+.links ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.links ul li {
+    margin: 10px 0; /* Space between list items */
+}
+
+.links ul li a {
+    color: #2e7d32; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    font-family: 'Arial', sans-serif; /* Font style */
+}
+
+.links ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
 
 

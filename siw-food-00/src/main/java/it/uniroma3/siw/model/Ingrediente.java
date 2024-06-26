@@ -15,6 +15,7 @@ public class Ingrediente {
 	private String season;
 	public String photo;
 	private String quantity;
+	@Column(length = 2000)
 	private String description;
 	private String unitaDiMisura;
 	@Transient
