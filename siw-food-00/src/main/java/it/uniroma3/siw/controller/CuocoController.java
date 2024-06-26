@@ -93,7 +93,7 @@ public class CuocoController {
 	                this.cuocoService.save(cuoco);
 	                
 	                model.addAttribute("cuoco", cuoco);
-	                return "cuoco";
+	                return "cuoco.html";
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	                model.addAttribute("messaggioErrore", "Errore nel caricamento dell'immagine...");

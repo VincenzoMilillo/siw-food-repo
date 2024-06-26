@@ -27,9 +27,13 @@
         <ul>
             <li th:each="ricetta : ${ricette}">
                <div>
-                    <a th:href="@{'/ricetta/' + ${ricetta.id}}" th:text="${ricetta.name}"></a>
-                    <span>- </span><a th:href="@{'/cuoco/' + ${ricetta.cuoco.id}}" th:text="${ricetta.cuoco != null ? ricetta.cuoco.surname : 'N/A'}"></a>
-                </div>
+				    <a th:href="@{'/ricetta/' + ${ricetta.id}}" th:text="${ricetta.name}"></a>
+				    <span>- </span>
+				    <span th:if="${ricetta.cuoco != null}">
+				        <a th:href="@{'/cuoco/' + ${ricetta.cuoco.id}}" th:text="${ricetta.cuoco.surname}"></a>
+				    </span>
+				    <span th:unless="${ricetta.cuoco != null}" th:text="'cuoco non presente'"></span>
+				</div>
             </li>
         </ul>
     </main>
