@@ -6,6 +6,10 @@ Questo è un progetto assegnato dal docente del corso di Sistemi Informativi Su 
 
 Il progetto "SIW-Food-00" è un'applicazione web basata su Java 17 e Spring Boot 3.2.5. Utilizza diverse dipendenze di Spring Boot per gestire la persistenza dei dati, la sicurezza, la validazione e la presentazione dei dati tramite Thymeleaf. Il progetto è configurato per utilizzare un database PostgreSQL.
 
+## Modello di dominio
+![image](https://github.com/VincenzoMilillo/siw-food-repo/assets/128827674/a1c30ba4-9a10-41fb-97cc-7b75fa2ee04d)
+
+
 ## Struttura del Progetto e tecnologie utilizzate 
 
 **PostgreSQL:** Database relazionale utilizzato per memorizzare i dati dell'applicazione.
