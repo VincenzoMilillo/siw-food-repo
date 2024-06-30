@@ -72,9 +72,11 @@ public class CuocoController {
 	public String deleteCuocoAdmin(@PathVariable("cuocoId") Long cuocoId, Model model) {
 		Cuoco cuoco = cuocoService.findById(cuocoId);
 		User userAssociato = userRepository.findByNameAndSurname(cuoco.getName(), cuoco.getSurname());
-		Credentials credentialsAssociate = credentialsRepository.findById(userAssociato.getId()).get();
-		credentialsRepository.deleteById(credentialsAssociate.getId());
-		cuocoRepository.deleteById(cuocoId);
+		if(userAssociato != null) {
+			Credentials credentialsAssociate = credentialsRepository.findById(userAssociato.getId()).get();
+			credentialsRepository.deleteById(credentialsAssociate.getId());
+		}
+		cuocoService.deleteById(cuocoId);
 		return "redirect:/admin/manageCuochi";
 	}
 	

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Cuoco {
@@ -24,6 +27,9 @@ public class Cuoco {
 	public String photo;
 	@Column(length = 2000)
 	public String description;
+	
+	@Transient
+	private MultipartFile immagine;
 	
 	/*ASSOCIAZIONI*/
 	@OneToMany(mappedBy = "cuoco", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
